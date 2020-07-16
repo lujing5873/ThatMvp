@@ -12,7 +12,7 @@ import pers.nchz.thatmvpdemo.view.NestedView;
  * Created by dell on 2018/3/8.
  */
 
-public class NestedDelegate extends ThatBaseDelegate<NestedPresenter>   {
+public class NestedDelegate extends ThatBaseDelegate<NestedView>   {
 
 
     @Override
@@ -21,8 +21,9 @@ public class NestedDelegate extends ThatBaseDelegate<NestedPresenter>   {
     }
 
     @Override
-    protected Class<NestedPresenter> getPresentClass() {
-        return NestedPresenter.class;
+    protected Class<NestedView> getViewClass() {
+        return NestedView.class;
     }
+
 
 }

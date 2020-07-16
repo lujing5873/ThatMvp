@@ -11,6 +11,6 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
  */
 
 public interface IThatBaseDelegate {
-    <T extends ThatBasePresenter> T getPresenter();
     void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+    void onDestroy();
 }

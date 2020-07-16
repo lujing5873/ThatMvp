@@ -14,16 +14,12 @@ import androidx.fragment.app.Fragment;
  */
 
 public abstract class ThatBaseFragment<E extends ThatBaseDelegate>extends Fragment   {
-
-
     protected View rootView;
     protected E baseDelegate;
-
     public ThatBaseFragment(){
         try {
             baseDelegate= getDelegateClass().newInstance();
             baseDelegate.init();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -33,7 +29,7 @@ public abstract class ThatBaseFragment<E extends ThatBaseDelegate>extends Fragme
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         if(rootView==null){
             baseDelegate.onCreate(inflater,container,savedInstanceState);
-            rootView=baseDelegate.getPresenter().getView().getRootView();
+            rootView=baseDelegate.getView().getRootView();
         }
         return rootView;
     }
@@ -41,7 +37,19 @@ public abstract class ThatBaseFragment<E extends ThatBaseDelegate>extends Fragme
     @Override
     public void onStart() {
         super.onStart();
-        baseDelegate.initData();
+        if(baseDelegate!=null){
+            baseDelegate.initData();
+        }
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(baseDelegate!=null){
+            baseDelegate.onDestroy();
+            baseDelegate=null;
+        }
     }
 
     protected abstract Class<E > getDelegateClass();

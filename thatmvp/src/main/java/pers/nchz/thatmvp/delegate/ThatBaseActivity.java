@@ -31,7 +31,7 @@ public abstract class ThatBaseActivity<E extends ThatBaseDelegate> extends AppCo
         super.onCreate(savedInstanceState);
         if(baseDelegate!=null){
             baseDelegate.onCreate(getLayoutInflater(),null,savedInstanceState);
-            setContentView(baseDelegate.getPresenter().getView().getRootView());
+            setContentView(baseDelegate.getView().getRootView());
         }
     }
 
@@ -42,6 +42,15 @@ public abstract class ThatBaseActivity<E extends ThatBaseDelegate> extends AppCo
             baseDelegate.initData();
         }
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(baseDelegate!=null){
+            baseDelegate.onDestroy();
+            baseDelegate=null;
+        }
     }
 
     protected abstract Class<E > getDelegateClass();

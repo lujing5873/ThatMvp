@@ -8,20 +8,20 @@ import android.view.ViewGroup;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
+import pers.nchz.thatmvp.view.ThatBaseView;
 
 /**
  *
  */
 
-public abstract class ThatBaseDelegate<P extends ThatBasePresenter>
+public abstract class ThatBaseDelegate<V extends ThatBaseView>
         implements IThatBaseDelegate {
 
-    protected P presenter;
+    protected V view;
 
     public void init(){
         try {
-            presenter=getPresentClass().newInstance();
-            presenter.setView();
+            view=getViewClass().newInstance();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -29,16 +29,24 @@ public abstract class ThatBaseDelegate<P extends ThatBasePresenter>
 
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        presenter.onCreate(inflater,container,savedInstanceState);
+        view.onCreate(inflater,container,savedInstanceState);
+    }
 
+    @Override
+    public void onDestroy() {
+        view.unBindPresenter();
+        view=null;
     }
 
     protected abstract void initData();
 
-    protected abstract Class<P> getPresentClass();
+    protected abstract Class<V> getViewClass();
 
-    @Override
-    public <T extends ThatBasePresenter> T getPresenter() {
-        return (T) presenter;
+    public V getView() {
+        return view;
+    }
+
+    public void setView(V view) {
+        this.view = view;
     }
 }

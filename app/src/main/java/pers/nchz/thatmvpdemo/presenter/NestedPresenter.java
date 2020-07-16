@@ -1,6 +1,7 @@
 package pers.nchz.thatmvpdemo.presenter;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
+import pers.nchz.thatmvpdemo.R;
 import pers.nchz.thatmvpdemo.view.NestedView;
 
 /**
@@ -8,11 +9,5 @@ import pers.nchz.thatmvpdemo.view.NestedView;
  */
 
 public class NestedPresenter extends ThatBasePresenter<NestedView> {
-
-
-    @Override
-    protected Class<NestedView> getViewClass() {
-        return NestedView.class;
-    }
 
 }

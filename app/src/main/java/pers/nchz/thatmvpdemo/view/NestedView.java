@@ -54,6 +54,8 @@ public class NestedView extends ThatBaseView<NestedPresenter> {
     }
 
 
-
-
+    @Override
+    protected Class<NestedPresenter> getPresenterClass() {
+        return NestedPresenter.class;
+    }
 }

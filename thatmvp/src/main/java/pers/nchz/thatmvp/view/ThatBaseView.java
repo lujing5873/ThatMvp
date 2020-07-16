@@ -23,10 +23,19 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
     protected View rootView;
     protected final SparseArray<View> mViews = new SparseArray<View>();
 
+    public ThatBaseView(){
+        try {
+            presenter=getPresenterClass().newInstance();
+            presenter.setView(this);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         int rootLayoutId = getRootLayoutId();
-
         rootView = inflater.inflate(rootLayoutId, container, false);
         context=rootView.getContext();
         initView();
@@ -50,7 +59,7 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
         return bindView(id);
 
     }
-
+    protected abstract Class<T> getPresenterClass();
     @Override
     public void setPresenter(ThatBasePresenter presenter) {
         try {
@@ -58,7 +67,10 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
         }catch (Exception ex){
             Log.i("presenter强转失败：类名",getClass().getName());
         }
-
     }
+    public void unBindPresenter(){
+        presenter.setView(null);
+    }
+
 }
 
