@@ -7,7 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Created by dell on 2018/3/12.
+ *
  */
 
 public class NestedRecyclerView  extends RecyclerView {

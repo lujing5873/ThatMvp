@@ -13,10 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import androidx.core.view.NestedScrollingParent;
+import androidx.core.view.NestedScrollingParent2;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
- * Created by dell on 2018/3/8.
+ *
  */
 
 public class MyNestedScrollParent extends LinearLayout implements NestedScrollingParent {
@@ -47,11 +48,8 @@ public class MyNestedScrollParent extends LinearLayout implements NestedScrollin
 
     @Override
     public boolean onStartNestedScroll(View child, View target, int nestedScrollAxes) {
-        System.out.println(child);
-        System.out.println(target);
 //        System.out.println(nestedScrollAxes);
         isStart=false;
-        System.out.println("onStartNestedScroll>>>");
         return true;
     }
 
@@ -84,16 +82,13 @@ public class MyNestedScrollParent extends LinearLayout implements NestedScrollin
     @Override
     public void onNestedPreScroll(View target, int dx, int dy, int[] consumed) {
         isStart=true;
-        System.out.println("onNestedPreScroll>>>>>>>>");
         RecyclerView recyclerView=null;
         if(target instanceof  RecyclerView){
             recyclerView= (RecyclerView) target;
         }
-        System.out.println("onNestedPreScroll>>>>>>>>2");
         if(recyclerView==null){
             return;
         }
-        System.out.println("onNestedPreScroll>>>>>>>>3");
         int height=top.getHeight();
         if(dy>0){
             if(height>0){ //回收上拉
@@ -120,19 +115,6 @@ public class MyNestedScrollParent extends LinearLayout implements NestedScrollin
         }
 
 
-//        System.out.println("isEnd:"+!target.canScrollVertically(1));
-//        System.out.println("start:"+!target.canScrollVertically(-1));
-//        if(!recyclerView.canScrollVertically(-1)&&dy<0){
-//            consumed[1]=dy;
-//            System.out.println("height:"+Math.abs(dy));
-//            int addHeight=(int) (Math.abs(dy)*0.8)+top.getHeight();
-//            System.out.println("addHeight:"+addHeight);
-//            System.out.println("oldHeight:"+ top.getLayoutParams().height);
-//            top.getLayoutParams().height=addHeight;
-//            top.requestLayout();
-//            System.out.println("newHeight:"+top.getLayoutParams().height);
-//
-//        }
     }
 
     @Override
@@ -174,7 +156,6 @@ public class MyNestedScrollParent extends LinearLayout implements NestedScrollin
         if(!isStart){
             return;
         }
-        System.out.println("stop>>>>>>>"+top.getHeight());
         if(top.getHeight()>freshenHeight){//回调刷新
             smallScroll(top.getHeight(),freshenHeight);
         }else
@@ -188,7 +169,6 @@ public class MyNestedScrollParent extends LinearLayout implements NestedScrollin
 
     @Override
     public boolean onNestedFling(View target, float velocityX, float velocityY, boolean consumed) {
-        System.out.println("vy:"+velocityY);
         return super.onNestedFling(target, velocityX, velocityY, consumed);
     }
     public void setFreshen(boolean isFreshen){

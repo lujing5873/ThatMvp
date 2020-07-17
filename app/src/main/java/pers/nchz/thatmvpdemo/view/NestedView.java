@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
+import pers.nchz.thatmvp.view.IThatBaseView;
 import pers.nchz.thatmvp.view.ThatBaseView;
 import pers.nchz.thatmvpdemo.R;
 import pers.nchz.thatmvpdemo.adapter.NestedAdapter;
@@ -23,13 +24,12 @@ import pers.nchz.thatmvpdemo.presenter.NestedPresenter;
 
 public class NestedView extends ThatBaseView<NestedPresenter> implements INestedView {
     private NestedAdapter mAdapter;
-    private TextView t1,t2;
     private RecyclerView recyclerView;
     private  List<TestBean> mList=new ArrayList<>();
 
     @Override
     public void initView(Bundle savedInstanceState) {
-
+        presenter.getData();
     }
 
     @Override
@@ -55,12 +55,9 @@ public class NestedView extends ThatBaseView<NestedPresenter> implements INested
 
     @Override
     public void newVoid() {
-        System.out.println("initView");
         for(int i=0;i<10;i++){
             mList.add(new TestBean());
         }
-        t1=getView(R.id.testSt);
-        t2=getView(R.id.testEn);
         recyclerView=getView(R.id.test_ry);
         mAdapter=new NestedAdapter(rootView.getContext(),mList );
         recyclerView.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
@@ -71,4 +68,5 @@ public class NestedView extends ThatBaseView<NestedPresenter> implements INested
     public void getDataSuccess(List<ImageBean> list) {
 
     }
+
 }

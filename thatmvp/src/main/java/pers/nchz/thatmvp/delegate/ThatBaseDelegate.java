@@ -14,7 +14,7 @@ import pers.nchz.thatmvp.view.ThatBaseView;
  *
  */
 
-public abstract class ThatBaseDelegate<V extends ThatBaseView>
+public abstract class ThatBaseDelegate<V extends IThatBaseView>
         implements IThatBaseDelegate {
 
     protected V view;
@@ -30,7 +30,6 @@ public abstract class ThatBaseDelegate<V extends ThatBaseView>
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view.onCreate(inflater,container,savedInstanceState);
-
     }
 
 

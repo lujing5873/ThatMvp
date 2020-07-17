@@ -7,17 +7,18 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import pers.nchz.thatmvp.view.IThatBaseView;
+import pers.nchz.thatmvp.view.ThatBaseView;
 
 /**
  * basePresenter类
  */
 
 public abstract class ThatBasePresenter {
-    private ArrayMap<Class<? extends IThatBaseView>,IThatBaseView> views;
+    private ArrayMap<Class<? extends IThatBaseView>,IThatBaseView> views=new ArrayMap<>();
     public <T extends IThatBaseView> void addView(Class<? extends IThatBaseView> tClass,T view){
         views.put(tClass,view);
     }
-    public <T extends IThatBaseView> void removeView(T view){
+    public <T extends IThatBaseView> void removeView(Class<T> view){
         views.remove(view);
     }
     public <T extends IThatBaseView> T getView(Class<T> viewClass) {

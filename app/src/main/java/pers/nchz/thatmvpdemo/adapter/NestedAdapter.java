@@ -32,7 +32,6 @@ public class NestedAdapter extends ListBaseAdapter<TestBean> {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        System.out.println("onbindView");
         ViewHolder viewHolder= (ViewHolder) holder;
         viewHolder.itemT1.setText("this is the "+position);
     }

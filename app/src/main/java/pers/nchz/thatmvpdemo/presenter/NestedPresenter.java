@@ -4,6 +4,7 @@ import android.os.Handler;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvpdemo.view.INestedView;
+import pers.nchz.thatmvpdemo.view.NestedView;
 
 /**
  * Created by dell on 2018/3/8.
@@ -11,7 +12,7 @@ import pers.nchz.thatmvpdemo.view.INestedView;
 
 public class NestedPresenter extends ThatBasePresenter {
 
-    void getData(){
+    public void getData(){
        Handler handler=new Handler();
        handler.postDelayed(new Runnable() {
            @Override
