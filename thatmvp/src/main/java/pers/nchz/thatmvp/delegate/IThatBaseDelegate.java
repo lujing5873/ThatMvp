@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
+import pers.nchz.thatmvp.view.IThatBaseView;
 
 /**
  *
@@ -12,5 +13,5 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 
 public interface IThatBaseDelegate {
     void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-    void onDestroy();
+    <V extends IThatBaseView> V getView();
 }

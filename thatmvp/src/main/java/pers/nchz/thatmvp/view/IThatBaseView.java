@@ -13,17 +13,12 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
  */
 
 public interface IThatBaseView {
-    /**
-     *  初始化View
-     * @param inflater
-     * @param container
-     * @param savedInstanceState
-     */
+
     void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
-    void initView();
+    void initView(Bundle savedInstanceState);
     void initData();
     int getOptionsMenuId();
     int getRootLayoutId();
     View getRootView();
-    void setPresenter(ThatBasePresenter presenter);
+    void onDestroy();
 }

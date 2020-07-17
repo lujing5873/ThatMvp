@@ -19,7 +19,6 @@ public abstract class ThatBaseFragment<E extends ThatBaseDelegate>extends Fragme
     public ThatBaseFragment(){
         try {
             baseDelegate= getDelegateClass().newInstance();
-            baseDelegate.init();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -44,11 +43,27 @@ public abstract class ThatBaseFragment<E extends ThatBaseDelegate>extends Fragme
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if(baseDelegate!=null){
+            baseDelegate.onResume();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if(baseDelegate!=null){
+            baseDelegate.onPause();
+        }
+    }
+
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         if(baseDelegate!=null){
             baseDelegate.onDestroy();
-            baseDelegate=null;
         }
     }
 

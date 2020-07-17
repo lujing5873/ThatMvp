@@ -19,7 +19,6 @@ public abstract class ThatBaseActivity<E extends ThatBaseDelegate> extends AppCo
         try {
             if(getDelegateClass()!=null){
                 baseDelegate= getDelegateClass().newInstance();
-                baseDelegate.init();
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,6 +41,22 @@ public abstract class ThatBaseActivity<E extends ThatBaseDelegate> extends AppCo
             baseDelegate.initData();
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(baseDelegate!=null){
+            baseDelegate.onResume();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(baseDelegate!=null){
+            baseDelegate.onPause();
+        }
     }
 
     @Override

@@ -19,7 +19,7 @@ public abstract class ThatBaseDelegate<V extends ThatBaseView>
 
     protected V view;
 
-    public void init(){
+    public ThatBaseDelegate(){
         try {
             view=getViewClass().newInstance();
         } catch (Exception e) {
@@ -30,23 +30,27 @@ public abstract class ThatBaseDelegate<V extends ThatBaseView>
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view.onCreate(inflater,container,savedInstanceState);
+
     }
 
-    @Override
-    public void onDestroy() {
-        view.unBindPresenter();
-        view=null;
-    }
 
-    protected abstract void initData();
+    protected void initView(Bundle savedInstanceState){
+        view.initView(savedInstanceState);
+    }
+    protected void initData(){
+        view.initData();
+    }
+    protected void onStart(){}
+    protected void onPause(){}
+    protected void onResume(){}
+    protected void onDestroy(){
+        view.onDestroy();
+    }
 
     protected abstract Class<V> getViewClass();
 
-    public V getView() {
-        return view;
-    }
-
-    public void setView(V view) {
-        this.view = view;
+    @Override
+    public <V extends IThatBaseView> V getView() {
+        return (V) view;
     }
 }

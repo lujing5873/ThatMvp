@@ -1,13 +1,24 @@
 package pers.nchz.thatmvpdemo.presenter;
 
+import android.os.Handler;
+
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
-import pers.nchz.thatmvpdemo.R;
-import pers.nchz.thatmvpdemo.view.NestedView;
+import pers.nchz.thatmvpdemo.view.INestedView;
 
 /**
  * Created by dell on 2018/3/8.
  */
 
-public class NestedPresenter extends ThatBasePresenter<NestedView> {
+public class NestedPresenter extends ThatBasePresenter {
 
+    void getData(){
+       Handler handler=new Handler();
+       handler.postDelayed(new Runnable() {
+           @Override
+           public void run() {
+               getView(INestedView.class).newVoid();
+           }
+       },500);
+
+    }
 }

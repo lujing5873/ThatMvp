@@ -25,8 +25,10 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
 
     public ThatBaseView(){
         try {
-            presenter=getPresenterClass().newInstance();
-            presenter.setView(this);
+            if(getPresenterClass()!=null){
+                presenter=getPresenterClass().newInstance();
+                presenter.addView(this.getClass(),this);
+            }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InstantiationException e) {
@@ -38,7 +40,7 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
         int rootLayoutId = getRootLayoutId();
         rootView = inflater.inflate(rootLayoutId, container, false);
         context=rootView.getContext();
-        initView();
+
     }
 
     @Override
@@ -60,16 +62,19 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
 
     }
     protected abstract Class<T> getPresenterClass();
+
     @Override
-    public void setPresenter(ThatBasePresenter presenter) {
-        try {
-            this.presenter= (T) presenter;
-        }catch (Exception ex){
-            Log.i("presenter强转失败：类名",getClass().getName());
-        }
+    public void onDestroy() {
+        presenter.removeView(this);
     }
-    public void unBindPresenter(){
-        presenter.setView(null);
+
+    public void setOnClickListener(View.OnClickListener listener, int...ids){
+        if(ids==null){
+            return;
+        }
+        for(int id:ids){
+            getView(id).setOnClickListener(listener);
+        }
     }
 
 }

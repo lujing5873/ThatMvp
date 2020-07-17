@@ -15,7 +15,7 @@ import pers.nchz.thatmvpdemo.R;
 import pers.nchz.thatmvpdemo.bean.TestBean;
 
 /**
- * Created by dell on 2018/3/8.
+ *
  */
 
 public class NestedAdapter extends ListBaseAdapter<TestBean> {

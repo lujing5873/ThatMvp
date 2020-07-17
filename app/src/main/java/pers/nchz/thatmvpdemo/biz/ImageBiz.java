@@ -11,7 +11,7 @@ import pers.nchz.thatmvpdemo.bean.ImageBean;
 
 
 /**
- * Created by dell on 2018/1/12.
+ *
  */
 
 public class ImageBiz {
