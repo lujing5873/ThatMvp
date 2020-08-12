@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/main_test1"
+        android:icon="@drawable/ic_baseline_accessibility_24"
+        android:title="test1" />
+    <item
+        android:id="@+id/main_test2"
+        android:icon="@drawable/ic_baseline_access_alarm_24"
+        android:title="test2" />
+    <item
+        android:id="@+id/main_test3"
+        android:icon="@drawable/ic_baseline_access_time_24"
+        android:title="test3" />
+    <item
+        android:id="@+id/main_test4"
+        android:icon="@drawable/ic_baseline_accessible_24"
+        android:title="test4" />
+</menu>

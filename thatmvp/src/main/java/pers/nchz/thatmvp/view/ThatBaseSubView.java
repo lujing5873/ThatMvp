@@ -16,7 +16,7 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
  * Created by dell on 2017/12/12.
  */
 
-public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThatBaseView {
+public abstract class ThatBaseSubView<T extends ThatBasePresenter> implements IThatBaseSubView {
 
     protected Context context;
     protected AppCompatActivity mActivity;
@@ -25,20 +25,11 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
     protected ViewGroup rootViewGroup;
     protected final SparseArray<View> mViews = new SparseArray<View>();
     protected Class<? extends IThatBaseView> tClass;
-    public ThatBaseView(){
-        try {
-            if(getPresenterClass()!=null){
-                presenter=getPresenterClass().newInstance();
-                tClass= (Class<? extends IThatBaseView>) this.getClass().getInterfaces()[0];
-                presenter.addView(tClass,this);
-                //或者把当前class传递进去,然后presenter getView 方法需要两个参数 一个是接口参数 一个为实际的view实现类
-                // presenter.addView(this.getClass(),this);
-            }
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        }
+    public ThatBaseSubView(){
+        tClass= (Class<? extends IThatBaseView>) this.getClass().getInterfaces()[0];
+       //或者把当前class传递进去,然后presenter getView 方法需要两个参数 一个是接口参数 一个为实际的view实现类
+       // presenter.addView(this.getClass(),this);
+
     }
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +39,7 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
             rootViewGroup= (ViewGroup) rootView;
             context=rootView.getContext();
             mActivity= (AppCompatActivity) context;
+            initView(savedInstanceState);
         }
     }
 
@@ -69,8 +61,6 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
         return bindView(id);
 
     }
-    protected abstract Class<T> getPresenterClass();
-
     @Override
     public void onDestroy() {
         presenter.removeView(tClass);
@@ -87,18 +77,26 @@ public abstract class ThatBaseView<T extends ThatBasePresenter> implements IThat
 
     public void addSubView(IThatBaseSubView view,Bundle savedInstanceState){
         view.onCreate(LayoutInflater.from(context),rootViewGroup,savedInstanceState);
+
         if(view.getRootView()!=null){
             rootViewGroup.addView(view.getRootView());
             view.setPresenter(presenter);
         }
-
     }
-    public void addSubView(IThatBaseSubView view,Bundle savedInstanceState,int index) {
-        view.onCreate(LayoutInflater.from(context), rootViewGroup, savedInstanceState);
-        if (view.getRootView() != null) {
-            rootViewGroup.addView(view.getRootView(), index);
+
+    public void addSubView(IThatBaseSubView view,Bundle savedInstanceState,int index){
+        view.onCreate(LayoutInflater.from(context),rootViewGroup,savedInstanceState);
+
+        if(view.getRootView()!=null){
+            rootViewGroup.addView(view.getRootView(),index);
             view.setPresenter(presenter);
         }
+    }
+
+    @Override
+    public <P extends ThatBasePresenter> void setPresenter(P presenter) {
+        this.presenter= (T) presenter;
+        presenter.addView(tClass,this);
     }
 }
 

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    android:paddingRight="5dp"
+    android:gravity="center_vertical"
+     android:layout_height="48dp">
+
+    <ImageView
+        android:id="@+id/iv_back"
+        android:src="@drawable/ic_baseline_arrow_back_ios_24"
+        android:layout_width="24dp"
+        android:layout_height="24dp"/>
+    <TextView
+        android:id="@+id/tv_head_title"
+        android:text="这是标题"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/iv_menu"
+        android:src="@drawable/ic_baseline_menu_24"
+        android:layout_width="24dp"
+        android:layout_height="24dp"/>
+
+</LinearLayout>

@@ -29,6 +29,7 @@ public class WelcomActivity extends ThatBaseActivity {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_welcome);
         requestPermissions();
     }
     private void requestPermissions() {

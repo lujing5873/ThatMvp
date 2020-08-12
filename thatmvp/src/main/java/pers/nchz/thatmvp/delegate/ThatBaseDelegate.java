@@ -30,6 +30,7 @@ public abstract class ThatBaseDelegate<V extends IThatBaseView>
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view.onCreate(inflater,container,savedInstanceState);
+        initView(savedInstanceState);
     }
 
 

@@ -29,5 +29,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife:7.0.1'
     implementation 'com.github.bumptech.glide:glide:4.5.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
+    implementation 'com.github.pinguo-zhouwei:CustomPopwindow:2.1.1'
     implementation project(':thatmvp')
 }
