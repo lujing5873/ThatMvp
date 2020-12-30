@@ -14,9 +14,8 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 public interface IThatBaseView {
     void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
     void initView(Bundle savedInstanceState);
-    void initData();
-    int getOptionsMenuId();
-    int getRootLayoutId();
+    int  getRootLayoutId();
     View getRootView();
-    void onDestroy();
+    <PR extends ThatBasePresenter>void setPresenter(PR presenter);
+    Class<?extends IThatBaseView> getInterface();
 }

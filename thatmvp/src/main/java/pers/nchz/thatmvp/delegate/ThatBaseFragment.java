@@ -8,65 +8,51 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import pers.nchz.thatmvp.R;
+import pers.nchz.thatmvp.presenter.ThatBasePresenter;
+import pers.nchz.thatmvp.view.IThatBaseView;
+
 
 /**
  * Created by dell on 2017/12/12.
  */
 
-public abstract class ThatBaseFragment<E extends ThatBaseDelegate>extends Fragment   {
+public abstract class ThatBaseFragment<V extends IThatBaseView,P extends ThatBasePresenter>extends Fragment   {
     protected View rootView;
-    protected E baseDelegate;
-    public ThatBaseFragment(){
-        try {
-            baseDelegate= getDelegateClass().newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    protected V view;
+    protected P presenter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        if(view==null||presenter==null){
+            try {
+                view=getViewClass().newInstance();
+                presenter=getPresenterClass().newInstance();
+            } catch (Exception e) {
+                rootView=inflater.inflate(R.layout.fragment_error,container,false);
+                return  rootView;
+            }
+        }
         if(rootView==null){
-            baseDelegate.onCreate(inflater,container,savedInstanceState);
-            rootView=baseDelegate.getView().getRootView();
+            view.onCreate(inflater,container,savedInstanceState);
+            presenter.addView(view.getInterface(),view);
+            rootView=view.getRootView();
+            view.setPresenter(presenter);
+        }
+        if(view!=null){
+            view.initView(savedInstanceState);
         }
         return rootView;
     }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        if(baseDelegate!=null){
-            baseDelegate.initData();
-        }
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(baseDelegate!=null){
-            baseDelegate.onResume();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        if(baseDelegate!=null){
-            baseDelegate.onPause();
-        }
-    }
-
+    protected abstract Class<V> getViewClass();
+    protected abstract Class<P> getPresenterClass();
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if(baseDelegate!=null){
-            baseDelegate.onDestroy();
+        if(presenter!=null){
+            presenter.cleanView();
         }
     }
-
-    protected abstract Class<E > getDelegateClass();
-
 }

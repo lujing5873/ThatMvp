@@ -3,8 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="this is test4"
-        android:gravity="center"
+        android:textSize="20sp"
+        android:text="activity view error"
         android:layout_width="match_parent"
+        android:gravity="center"
         android:layout_height="match_parent"/>
 </LinearLayout>
