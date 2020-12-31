@@ -12,35 +12,50 @@ import androidx.appcompat.app.AppCompatActivity;
 import pers.nchz.thatmvp.R;
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
+import pers.nchz.thatmvp.view.ThatBaseView;
 
 /**
- *
+ * ThatBaseActivity 是activity的基类 继承自android x下的AppCompatActivity
+ * 为mvvm扩展做好准备
  */
 
-public abstract class ThatBaseActivity<V extends IThatBaseView,P extends ThatBasePresenter> extends AppCompatActivity   {
+public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatBasePresenter> extends AppCompatActivity   {
+    /**
+     * 保存的根view
+     */
     protected View rootView;
+    /**
+     *实际的view对象
+     */
     protected V view;
+    /**
+     * 实际的presenter对象
+     */
     protected P presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //实例化view和presenter
         if(view==null||presenter==null){
             try {
                 view=getViewClass().newInstance();
                 presenter=getPresenterClass().newInstance();
             } catch (Exception e) {
-                rootView=getLayoutInflater().inflate(R.layout.activity_error,null,false);
+                //出错加载错误页面
+                setContentView(R.layout.activity_error);
+                return;
             }
         }
-        if(rootView==null){
-            view.onCreate(getLayoutInflater(),null,savedInstanceState);
-            presenter.addView(view.getInterface(),view);
-            rootView=view.getRootView();
-            view.setPresenter(presenter);
+        if(rootView==null){  //如果根View还没有创建
+            view.onCreate(getLayoutInflater(),null,savedInstanceState); //view 初始化
+            presenter.addView(view.getInterface(),view); //presenter 添加
+            rootView=view.getRootView(); //赋值
+            view.setPresenter(presenter); //设置presenter
+        }else{
+            presenter.addView(view.getInterface(),view); //否则把view设置到presenter里
         }
         setContentView(rootView);
-
-        onViewCreate(savedInstanceState);
+        savedInstanceState=onViewCreate(savedInstanceState);
         if(view!=null){
             view.initView(savedInstanceState);
         }
@@ -51,12 +66,30 @@ public abstract class ThatBaseActivity<V extends IThatBaseView,P extends ThatBas
     protected void onDestroy() {
         super.onDestroy();
         if(presenter!=null){
-            presenter.cleanView();
+            //移除presenter对view的引用
+            presenter.removeView(getViewClass());
         }
 
     }
 
+    /**
+     * view的实际class
+     * @return view class
+     */
     protected abstract Class<V> getViewClass();
+
+    /**
+     * presenter的实际类
+     * @return presenter class
+     */
     protected abstract Class<P> getPresenterClass();
-    protected abstract void onViewCreate(Bundle savedInstanceState);
+
+    /**
+     * 需要对Bundle进行操作 重写此方法
+     * @param savedInstanceState bundle
+     * @return
+     */
+    protected  Bundle onViewCreate(Bundle savedInstanceState) {
+        return savedInstanceState;
+    }
 }

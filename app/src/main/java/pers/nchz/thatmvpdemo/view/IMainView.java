@@ -1,4 +1,4 @@
-package pers.nchz.thatmvpdemo;
+package pers.nchz.thatmvpdemo.view;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;

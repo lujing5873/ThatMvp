@@ -16,7 +16,7 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
  *
  */
 
-public abstract class ThatBaseView<P extends ThatBasePresenter> implements IThatBaseView {
+public abstract class ThatBaseView <P extends ThatBasePresenter> implements IThatBaseView {
 
     protected Context context;
     protected AppCompatActivity mActivity;
@@ -73,7 +73,9 @@ public abstract class ThatBaseView<P extends ThatBasePresenter> implements IThat
         view.onCreate(LayoutInflater.from(context),rootViewGroup,savedInstanceState);
         if(view.getRootView()!=null){
             rootViewGroup.addView(view.getRootView());
+            presenter.addView(view.getInterface(),view);
             view.setPresenter(presenter);
+            view.initView(savedInstanceState);
         }
 
     }
@@ -84,7 +86,9 @@ public abstract class ThatBaseView<P extends ThatBasePresenter> implements IThat
         view.onCreate(LayoutInflater.from(context), rootViewGroup, savedInstanceState);
         if (view.getRootView() != null) {
             rootViewGroup.addView(view.getRootView(), index);
+            presenter.addView(view.getInterface(),view);
             view.setPresenter(presenter);
+            view.initView(savedInstanceState);
         }
     }
 
