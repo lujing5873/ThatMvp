@@ -15,12 +15,7 @@ public class ContentView  extends ThatBaseView<MainPresenter> implements IConten
     @Override
     public void initView(Bundle savedInstanceState) {
         System.out.println("ContentView:"+presenter.getView(IMainView.class));
-        setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                presenter.getView(IHeadView.class).setTitle("content fragment title");
-            }
-        }, R.id.tv_content);
+
     }
 
     @Override
