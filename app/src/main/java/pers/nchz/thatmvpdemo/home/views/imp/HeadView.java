@@ -1,13 +1,16 @@
-package pers.nchz.thatmvpdemo.view.imp;
+package pers.nchz.thatmvpdemo.home.views.imp;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+
+import com.google.zxing.integration.android.IntentIntegrator;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
 import pers.nchz.thatmvp.view.ThatBaseView;
 import pers.nchz.thatmvpdemo.R;
-import pers.nchz.thatmvpdemo.view.IHeadView;
+import pers.nchz.thatmvpdemo.home.views.IHeadView;
 
 public class HeadView extends ThatBaseView<ThatBasePresenter> implements IHeadView {
 
@@ -16,6 +19,12 @@ public class HeadView extends ThatBaseView<ThatBasePresenter> implements IHeadVi
     public void initView(Bundle savedInstanceState) {
         System.out.println("initView:"+savedInstanceState);
         tvTitle=getView(R.id.tv_head);
+        setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new IntentIntegrator(mActivity).initiateScan();
+            }
+        }, R.id.iv_scan);
     }
 
     @Override

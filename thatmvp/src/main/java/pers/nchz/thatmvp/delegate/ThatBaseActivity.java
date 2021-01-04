@@ -92,4 +92,8 @@ public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatB
     protected  Bundle onViewCreate(Bundle savedInstanceState) {
         return savedInstanceState;
     }
+
+    protected P getPresenter() {
+        return presenter;
+    }
 }

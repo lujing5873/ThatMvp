@@ -6,8 +6,8 @@ import java.util.ServiceLoader;
 
 import pers.nchz.thatmvp.delegate.ThatBaseActivity;
 import pers.nchz.thatmvp.view.IThatBaseView;
-import pers.nchz.thatmvpdemo.presenter.MainPresenter;
-import pers.nchz.thatmvpdemo.view.imp.MainView;
+import pers.nchz.thatmvpdemo.home.presenters.MainPresenter;
+import pers.nchz.thatmvpdemo.home.views.imp.MainView;
 
 public class MainActivity extends ThatBaseActivity {
 

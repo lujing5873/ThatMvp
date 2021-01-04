@@ -1,6 +1,7 @@
 package pers.nchz.thatmvp.presenter;
 
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.ArrayMap;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -13,8 +14,8 @@ import pers.nchz.thatmvp.view.ThatBaseView;
  * basePresenter类
  */
 
-public abstract class ThatBasePresenter {
-    private ArrayMap<Class<? extends IThatBaseView>,IThatBaseView> views=new ArrayMap<>();
+public abstract class ThatBasePresenter  {
+    protected ArrayMap<Class<? extends IThatBaseView>,IThatBaseView> views=new ArrayMap<>();
     public <T extends IThatBaseView> void addView(Class<? extends IThatBaseView> tClass,T view){
         views.put(tClass,view);
     }

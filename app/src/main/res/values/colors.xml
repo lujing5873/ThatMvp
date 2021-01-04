@@ -6,4 +6,6 @@
     <color name="checkText">#FF9667</color>
     <color name="unCheckText">#999999</color>
     <color name="transparent">#00000000</color>
+    <color name="white">#ffffff</color>
+    <color name="tyBlue">#66ccff</color>
 </resources>

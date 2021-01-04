@@ -1,16 +1,14 @@
-package pers.nchz.thatmvpdemo.view.imp;
+package pers.nchz.thatmvpdemo.home.views.imp;
 
 import android.os.Bundle;
 
-import com.nhcz500.base.weiget.StatusBarView;
+import androidx.annotation.ColorRes;
 
-import me.jessyan.autosize.AutoSize;
-import me.jessyan.autosize.AutoSizeConfig;
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
 import pers.nchz.thatmvp.view.ThatBaseView;
 import pers.nchz.thatmvpdemo.R;
-import pers.nchz.thatmvpdemo.view.IStatusView;
+import pers.nchz.thatmvpdemo.home.views.IStatusView;
 
 public class StatusView extends ThatBaseView<ThatBasePresenter> implements IStatusView {
     @Override
@@ -28,7 +26,7 @@ public class StatusView extends ThatBaseView<ThatBasePresenter> implements IStat
     }
 
     @Override
-    public void setColor(int color) {
-
+    public void setColor(@ColorRes int color) {
+        rootView.setBackgroundResource(color);
     }
 }
