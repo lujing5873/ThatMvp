@@ -19,9 +19,11 @@ import android.media.Ringtone;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.util.Size;
+import android.view.KeyEvent;
 import android.view.Surface;
 import android.view.SurfaceView;
 import android.view.TextureView;
@@ -32,118 +34,67 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.journeyapps.barcodescanner.CaptureActivity;
+import com.journeyapps.barcodescanner.CaptureManager;
+import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.nhcz500.base.R;
+import com.nhcz500.base.weiget.CustomViewfinderView;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class CapActivity extends AppCompatActivity {
-    TextureView mTextureView;
-
-    ImageReader mImageReader;
-    CaptureRequest.Builder mPreViewBuidler;
-    CameraCaptureSession mCameraSession;
-    CameraCharacteristics mCameraCharacteristics;
-    Ringtone ringtone;
-    Handler mHandler;
-    Handler mUIHandler;
-    private String TAG="CapActivity";
-
-
+    private CaptureManager capture;
+    private DecoratedBarcodeView barcodeScannerView;
+    private CustomViewfinderView viewfinderView;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        barcodeScannerView = initializeContent();
+        viewfinderView= (CustomViewfinderView) barcodeScannerView.getViewFinder();
+        viewfinderView.initAnimator();
+        capture = new CaptureManager(this, barcodeScannerView);
+        capture.initializeFromIntent(getIntent(), savedInstanceState);
+        capture.decode();
+    }
+
+    protected DecoratedBarcodeView initializeContent() {
         setContentView(R.layout.activity_cap);
-        mTextureView=findViewById(R.id.sfv_cap);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, 111);
-        }
+        return findViewById(R.id.dbv_scan);
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        capture.onResume();
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 111) {
-            CameraManager manager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            try {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                manager.openCamera("1", new CameraDevice.StateCallback() {
-                    @Override
-                    public void onOpened(@NonNull CameraDevice camera) {
-
-                    }
-
-                    @Override
-                    public void onDisconnected(@NonNull CameraDevice camera) {
-
-                    }
-
-                    @Override
-                    public void onError(@NonNull CameraDevice camera, int error) {
-
-                    }
-                }, null);
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
+    protected void onPause() {
+        super.onPause();
+        capture.onPause();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        capture.onDestroy();
+    }
 
-    //相机会话的监听器，通过他得到mCameraSession对象，这个对象可以用来发送预览和拍照请求
-    private CameraCaptureSession.StateCallback mSessionStateCallBack = new CameraCaptureSession.StateCallback() {
-        @Override
-        public void onConfigured(CameraCaptureSession cameraCaptureSession) {
-            try {
-                mCameraSession = cameraCaptureSession;
-                cameraCaptureSession.setRepeatingRequest(mPreViewBuidler.build(), null, mHandler);
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-        }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        capture.onSaveInstanceState(outState);
+    }
 
-        @Override
-        public void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        capture.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
-        }
-    };
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        return barcodeScannerView.onKeyDown(keyCode, event) || super.onKeyDown(keyCode, event);
+    }
 
-    private Size mPreViewSize;
-    //预览图显示控件的监听器，可以监听这个surface的状态
-    //打开相机时候的监听器，通过他可以得到相机实例，这个实例可以创建请求建造者
-//    private CameraDevice.StateCallback cameraOpenCallBack = new CameraDevice.StateCallback() {
-//        @Override
-//        public void onOpened(CameraDevice camer aDevice) {
-//            Log.d(TAG, "相机已经打开");
-//            try {
-//                mPreViewBuidler = cameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-//                SurfaceTexture texture = mTextureView.getSurfaceTexture();
-//                texture.setDefaultBufferSize(mPreViewSize.getWidth(), mPreViewSize.getHeight());
-//                Surface surface = new Surface(texture);
-//                mPreViewBuidler.addTarget(surface);
-////                cameraDevice.createCaptureSession(Arrays.asList(surface, mImageReader.getSurface()), mSessionStateCallBack, mHandler);
-//            } catch (CameraAccessException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//
-//        @Override
-//        public void onDisconnected(CameraDevice cameraDevice) {
-//            Log.d(TAG, "相机连接断开");
-//        }
-//
-//        @Override
-//        public void onError(CameraDevice cameraDevice, int i) {
-//            Log.d(TAG, "相机打开失败");
-//        }
-//    };
 }

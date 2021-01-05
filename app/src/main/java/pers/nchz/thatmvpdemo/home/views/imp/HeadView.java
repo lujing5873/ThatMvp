@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.google.zxing.integration.android.IntentIntegrator;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
@@ -22,7 +21,6 @@ public class HeadView extends ThatBaseView<ThatBasePresenter> implements IHeadVi
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new IntentIntegrator(mActivity).initiateScan();
             }
         }, R.id.iv_scan);
     }
