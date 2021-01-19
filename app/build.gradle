@@ -40,6 +40,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
     implementation 'me.jessyan:autosize:1.2.1'
     implementation "androidx.fragment:fragment:1.2.5"
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
     implementation project(':thatmvp')
     implementation project(':base')
 }

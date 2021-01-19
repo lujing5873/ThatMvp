@@ -1,9 +1,12 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+
+import com.nhcz500.base.activity.CapActivity;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
@@ -16,11 +19,11 @@ public class HeadView extends ThatBaseView<ThatBasePresenter> implements IHeadVi
     TextView tvTitle;
     @Override
     public void initView(Bundle savedInstanceState) {
-        System.out.println("initView:"+savedInstanceState);
         tvTitle=getView(R.id.tv_head);
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mActivity.startActivity(new Intent(mActivity, CapActivity.class));
             }
         }, R.id.iv_scan);
     }

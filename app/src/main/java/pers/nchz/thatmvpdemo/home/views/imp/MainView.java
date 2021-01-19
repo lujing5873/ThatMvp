@@ -3,6 +3,7 @@ package pers.nchz.thatmvpdemo.home.views.imp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
@@ -23,7 +24,7 @@ import pers.nchz.thatmvpdemo.home.presenters.MainPresenter;
 import pers.nchz.thatmvpdemo.home.views.IHeadView;
 import pers.nchz.thatmvpdemo.home.views.IMainView;
 
-public class MainView extends ThatBaseView<MainPresenter> implements IMainView {
+public class MainView extends ThatBaseView<MainPresenter> implements IMainView  {
     private BottomNavigationView navigationView;
 
     private HomeFrag homeFrag;
@@ -65,7 +66,7 @@ public class MainView extends ThatBaseView<MainPresenter> implements IMainView {
                 return true;
             }
         });
-        mActivity.startActivity(new Intent(mActivity,CapActivity.class));
+
 
     }
 
@@ -114,5 +115,6 @@ public class MainView extends ThatBaseView<MainPresenter> implements IMainView {
     public Class<? extends IThatBaseView> getInterface() {
         return IMainView.class;
     }
+
 
 }
