@@ -41,7 +41,7 @@ public abstract class FreeCusDialog extends DialogFragment implements View.OnCli
     private float dimAmount=-1;//遮罩层透明度
     private int[] location= new int[2];
     private int xOffset,yOffset;//相对于view的x轴y轴偏移位置
-    private View otherView;//依附的viewId
+    private View otherView;//依附的view
     private int gravity;
     private boolean cancel=true;
 
@@ -57,7 +57,7 @@ public abstract class FreeCusDialog extends DialogFragment implements View.OnCli
         ViewGroup view= (ViewGroup) dialog.getWindow().getDecorView();
         view.removeAllViews();
         if(otherView!=null) {
-            elevation=elevation==0?2:elevation;//如果没有设置阴影 则给予默认值2
+            elevation=elevation==0?0:elevation;//如果没有设置阴影 则给予默认值2
         }
         int pxElevation=dip2px(elevation);
         setDialogView(view, pxElevation);

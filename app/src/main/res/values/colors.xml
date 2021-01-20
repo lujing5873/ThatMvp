@@ -8,4 +8,5 @@
     <color name="transparent">#00000000</color>
     <color name="white">#ffffff</color>
     <color name="tyBlue">#66ccff</color>
+    <color name="lineColor">#F6F6F6</color>
 </resources>
