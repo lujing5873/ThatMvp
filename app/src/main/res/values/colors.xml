@@ -9,4 +9,5 @@
     <color name="white">#ffffff</color>
     <color name="tyBlue">#66ccff</color>
     <color name="lineColor">#F6F6F6</color>
+    <color name="text_dark">#333333</color>
 </resources>

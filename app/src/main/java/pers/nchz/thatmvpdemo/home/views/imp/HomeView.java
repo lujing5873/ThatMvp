@@ -25,16 +25,16 @@ public class HomeView extends ThatBaseView<MainPresenter> implements IHomeView {
     RecyclerView rv;
     @Override
     public void initView(Bundle savedInstanceState) {
-        System.out.println("HomeView:"+presenter.getView(IMainView.class));
+//        System.out.println("HomeView:"+presenter.getView(IMainView.class));
         rv=getView(R.id.rv_home);
         rv.setLayoutManager(new LinearLayoutManager(context));
 
-        for(int i=0;i<10;i++){
-            HomeData data=new HomeData();
-            data.setIcon("icon_123");
-            data.setName("robot"+i);
-            data.setUserReal(i%2);
-            data.setWatchCount(i*11);
+//        for(int i=0;i<10;i++){
+//            HomeData data=new HomeData();
+//            data.setIcon("icon_123");
+//            data.setName("robot"+i);
+//            data.setUserReal(i%2);
+//            data.setWatchCount(i*11);
 //            RoomDbHelper.getInstance().getHomeDao().insertAll(data)
 //                    .subscribeOn(Schedulers.io())
 //                    .observeOn(AndroidSchedulers.mainThread())
@@ -49,7 +49,7 @@ public class HomeView extends ThatBaseView<MainPresenter> implements IHomeView {
 //                            System.out.println("插入成功");
 //                        }
 //                    });
-        }
+//        }
 
         RoomDbHelper.getInstance().getHomeDao().getAll()
                 .subscribeOn(Schedulers.io())

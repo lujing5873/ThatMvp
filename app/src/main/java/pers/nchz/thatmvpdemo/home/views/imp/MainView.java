@@ -1,18 +1,12 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.nhcz500.base.activity.CapActivity;
 
 import pers.nchz.thatmvp.view.IThatBaseView;
 import pers.nchz.thatmvp.view.ThatBaseView;
@@ -115,6 +109,4 @@ public class MainView extends ThatBaseView<MainPresenter> implements IMainView  
     public Class<? extends IThatBaseView> getInterface() {
         return IMainView.class;
     }
-
-
 }
