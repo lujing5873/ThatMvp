@@ -2,6 +2,8 @@ package pers.nchz.thatmvpdemo;
 
 import android.app.Application;
 
+import pers.nchz.thatmvpdemo.database.RoomDbHelper;
+
 public class MyApp  extends Application {
     private static Application CONTENT;
     @Override
@@ -10,7 +12,7 @@ public class MyApp  extends Application {
         CONTENT=this;
         RoomDbHelper.getInstance().init();
     }
-    static Application getContent(){
+    public static Application getContent(){
         return CONTENT;
     }
 }

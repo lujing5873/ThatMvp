@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 @Entity
 public class HomeData {
     @PrimaryKey(autoGenerate = true)
-    private int uid;
+    private Long uid;
     @ColumnInfo(name = "icon")
     private String icon;
     @ColumnInfo(name = "name")
@@ -15,12 +15,14 @@ public class HomeData {
     private int userReal;
     @ColumnInfo(name = "watchCount")
     private int watchCount;
+    @ColumnInfo(name = "type")
+    private int type;
 
-    public int getUid() {
+    public Long getUid() {
         return uid;
     }
 
-    public void setUid(int uid) {
+    public void setUid(Long uid) {
         this.uid = uid;
     }
 
@@ -54,5 +56,13 @@ public class HomeData {
 
     public void setWatchCount(int watchCount) {
         this.watchCount = watchCount;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

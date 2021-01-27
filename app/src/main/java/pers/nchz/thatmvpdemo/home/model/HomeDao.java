@@ -18,6 +18,10 @@ public interface  HomeDao {
     @Query("SELECT * FROM homedata")
     Flowable<List<HomeData>> getAll();
 
+
+    @Query("SELECT * FROM homedata where type==:type")
+    Flowable<List<HomeData>> getAllWithType(int type);
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     Completable insertAll(HomeData... homeData);
 

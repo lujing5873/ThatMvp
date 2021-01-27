@@ -8,22 +8,24 @@ import pers.nchz.thatmvp.view.ThatBaseView;
 import pers.nchz.thatmvpdemo.R;
 import pers.nchz.thatmvpdemo.home.presenters.MainPresenter;
 import pers.nchz.thatmvpdemo.home.views.IHomeView;
-import pers.nchz.thatmvpdemo.home.views.IMainView;
-import pers.nchz.thatmvpdemo.home.views.IMessageView;
 
-public class MessageView extends ThatBaseView<MainPresenter> implements IMessageView {
-    public MessageView(Context context) {
+public class HomeAppView extends ThatBaseView<MainPresenter> implements IHomeView {
+    public HomeAppView(Context context) {
         super(context);
+    }
+
+    public HomeAppView(Context context, int type) {
+        super(context, type);
     }
 
     @Override
     public void initView(Bundle savedInstanceState) {
-//        System.out.println("MessageView:"+presenter.getView(IMainView.class));
+
     }
 
     @Override
     public int getRootLayoutId() {
-        return R.layout.view_message;
+        return R.layout.view_home_appbar;
     }
 
     @Override

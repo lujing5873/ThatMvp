@@ -1,6 +1,7 @@
 package pers.nchz.thatmvp.delegate;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -34,14 +35,16 @@ public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatB
     protected P presenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        System.out.println("onCreate");
         super.onCreate(savedInstanceState);
         //实例化view和presenter
         if(view==null||presenter==null){
             try {
-                view=getViewClass().newInstance();
+                view=getViewClass().getConstructor(Context.class,int.class).newInstance(this,1);
                 presenter=getPresenterClass().newInstance();
             } catch (Exception e) {
                 //出错加载错误页面
+                System.out.println(e);
                 setContentView(R.layout.activity_error);
                 return;
             }
@@ -93,7 +96,7 @@ public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatB
         return savedInstanceState;
     }
 
-    protected P getPresenter() {
+    public P getPresenter() {
         return presenter;
     }
 }

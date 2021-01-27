@@ -1,14 +1,14 @@
 package pers.nchz.thatmvpdemo.home.fragments;
 
 import pers.nchz.thatmvp.delegate.ThatBaseFragment;
-import pers.nchz.thatmvpdemo.home.views.imp.HomeView;
 import pers.nchz.thatmvpdemo.home.presenters.MainPresenter;
+import pers.nchz.thatmvpdemo.home.views.imp.HomeView;
 import pers.nchz.thatmvpdemo.home.views.imp.HomeViewVp;
 
-public class HomeFrag extends ThatBaseFragment<HomeViewVp, MainPresenter> {
+public class HomeFrag extends ThatBaseFragment<HomeView, MainPresenter> {
     @Override
-    protected Class<HomeViewVp> getViewClass() {
-        return HomeViewVp.class;
+    protected Class<HomeView> getViewClass() {
+        return HomeView.class;
     }
 
     @Override

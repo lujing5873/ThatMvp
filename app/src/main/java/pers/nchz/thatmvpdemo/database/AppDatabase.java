@@ -1,4 +1,4 @@
-package pers.nchz.thatmvpdemo;
+package pers.nchz.thatmvpdemo.database;
 
 import androidx.room.Database;
 import androidx.room.RoomDatabase;

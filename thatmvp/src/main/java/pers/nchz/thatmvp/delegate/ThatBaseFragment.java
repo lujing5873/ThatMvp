@@ -36,17 +36,12 @@ public abstract class ThatBaseFragment<V extends ThatBaseView<P>,P extends ThatB
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//                if(getArguments()!=null){
-//                    presenter=getArguments().getParcelable(PRESENTER);
-
-//                }
-            System.out.println("onCreateView>>>>>>>>>>>>>>>>>>>>");
             if(presenter==null&&mActivity.getPresenterClass() == getPresenterClass()){
                 this.presenter= (P) mActivity.getPresenter();
             }
             try {//分开写为了防止 fragment通过外部注入presenter或者view
                 if(view==null){
-                view=getViewClass().newInstance();
+                    view=getViewClass().getConstructor(Context.class,int.class).newInstance(mActivity,1);
                 }
                 if(presenter==null){
                     presenter=getPresenterClass().newInstance();
@@ -56,10 +51,6 @@ public abstract class ThatBaseFragment<V extends ThatBaseView<P>,P extends ThatB
                 return  rootView;
             }
 
-
-        System.out.println("rootView:"+rootView);
-        System.out.println("view:"+view);
-        System.out.println("presenter:"+presenter);
         if(rootView==null){
             view.onCreate(inflater,container,savedInstanceState);
             presenter.addView(view.getInterface(),view);

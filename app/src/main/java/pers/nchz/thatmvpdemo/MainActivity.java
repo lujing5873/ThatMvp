@@ -24,11 +24,7 @@ public class MainActivity extends ThatBaseActivity {
 
     @Override
     protected Bundle onViewCreate(Bundle savedInstanceState) {
-        ServiceLoader<IThatBaseView> serviceLoader=ServiceLoader.load(IThatBaseView.class);
-        System.out.println(serviceLoader);
-        for(IThatBaseView service : serviceLoader) {
-            System.out.println("interfaces: "+service.getInterface());
-        }
+//        ServiceLoader<IThatBaseView> serviceLoader=ServiceLoader.load(IThatBaseView.class);
         if(savedInstanceState==null){
             savedInstanceState=new Bundle();
         }

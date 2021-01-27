@@ -1,5 +1,6 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.ColorRes;
@@ -11,6 +12,10 @@ import pers.nchz.thatmvpdemo.R;
 import pers.nchz.thatmvpdemo.home.views.IStatusView;
 
 public class StatusView extends ThatBaseView<ThatBasePresenter> implements IStatusView {
+    public StatusView(Context context) {
+        super(context);
+    }
+
     @Override
     public void initView(Bundle savedInstanceState) {
     }

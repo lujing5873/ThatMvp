@@ -1,5 +1,6 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import pers.nchz.thatmvp.view.IThatBaseView;
@@ -11,9 +12,13 @@ import pers.nchz.thatmvpdemo.home.views.IMainView;
 import pers.nchz.thatmvpdemo.home.views.IMineView;
 
 public class MineView extends ThatBaseView<MainPresenter> implements IMineView {
+    public MineView(Context context) {
+        super(context);
+    }
+
     @Override
     public void initView(Bundle savedInstanceState) {
-        System.out.println("MineView:"+presenter.getView(IMainView.class));
+//        System.out.println("MineView:"+presenter.getView(IMainView.class));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -25,14 +26,16 @@ public class MainView extends ThatBaseView<MainPresenter> implements IMainView  
     private MessageFrag messageFrag;
     private MineFrag mineFrag;
     private int lastFrag;
+
+    public MainView(Context context,int type) {
+        super(context,1);
+    }
+
     @Override
     public void initView(Bundle savedInstanceState) {
-        addSubView(new StatusView(),savedInstanceState,0);
-        addSubView(new HeadView(),savedInstanceState,1);
+        addSubView(new StatusView(context),savedInstanceState,0);
         navigationView=getView(R.id.nav_main);
         navigationView.setItemIconTintList(null);//关闭着色
-        presenter.getView(IHeadView.class).setTitle("robot | robot | robot");
-
         //每次都会重建 所以选择别的实现方式
 //        NavController navController = Navigation.findNavController(mActivity, R.id.nav_host_fragment);
 //        NavigationUI.setupWithNavController(navigationView, navController);
@@ -65,12 +68,13 @@ public class MainView extends ThatBaseView<MainPresenter> implements IMainView  
     }
 
     private void initFrag(){
+        System.out.println("initFrag");
         FragmentTransaction fragmentTransaction= mActivity.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.nav_host_fragment,homeFrag,"homeFrag");
-        fragmentTransaction.add(R.id.nav_host_fragment,messageFrag,"messageFrag");
-        fragmentTransaction.add(R.id.nav_host_fragment,mineFrag,"mineFrag");
-        fragmentTransaction.hide(messageFrag);
-        fragmentTransaction.hide(mineFrag);
+//        fragmentTransaction.add(R.id.nav_host_fragment,messageFrag,"messageFrag");
+//        fragmentTransaction.add(R.id.nav_host_fragment,mineFrag,"mineFrag");
+//        fragmentTransaction.hide(messageFrag);
+//        fragmentTransaction.hide(mineFrag);
         fragmentTransaction.commit();
 
     }

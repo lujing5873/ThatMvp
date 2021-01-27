@@ -1,34 +1,42 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.AttributeSet;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.annotation.Nullable;
 import androidx.viewpager2.widget.ViewPager2;
 
-import java.util.List;
+import com.example.freedialog.FreeDialog;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.functions.Consumer;
-import io.reactivex.rxjava3.schedulers.Schedulers;
 import pers.nchz.thatmvp.view.IThatBaseView;
 import pers.nchz.thatmvp.view.ThatBaseView;
 import pers.nchz.thatmvpdemo.R;
-import pers.nchz.thatmvpdemo.RoomDbHelper;
-import pers.nchz.thatmvpdemo.home.adpters.HomeAdapter;
 import pers.nchz.thatmvpdemo.home.adpters.HomeVPAdapter;
-import pers.nchz.thatmvpdemo.home.model.HomeData;
 import pers.nchz.thatmvpdemo.home.presenters.MainPresenter;
+import pers.nchz.thatmvpdemo.home.views.IHeadView;
 import pers.nchz.thatmvpdemo.home.views.IHomeView;
-import pers.nchz.thatmvpdemo.home.views.IMainView;
 
 public class HomeViewVp extends ThatBaseView<MainPresenter> implements IHomeView {
     ViewPager2  vp;
+
+    public HomeViewVp(Context context, int type) {
+        super(context, type);
+    }
+
+    public HomeViewVp(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+    }
+
+    public HomeViewVp(Context context) {
+        super(context);
+    }
+
     @Override
     public void initView(Bundle savedInstanceState) {
+//        presenter.getView(IHeadView.class).setTitle("robot | robot | robot");
         vp=getView(R.id.vp_home);
-        vp.setAdapter(new HomeVPAdapter());
-
+        vp.setAdapter(new HomeVPAdapter(presenter));
     }
 
     @Override
