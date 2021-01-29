@@ -27,22 +27,9 @@ public class HomeContentView extends ThatBaseView<MainPresenter> implements IHom
     public static final String TYPE="type";
     RecyclerView rv;
 
-    public HomeContentView(Context context) {
-        super(context);
-    }
-
-    public HomeContentView(Context context, int type) {
-        super(context, type);
-    }
-
-    public HomeContentView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        IMainView mainView=presenter.getView(IMainView.class);
-        System.out.println(mainView);
         rv=getView(R.id.rv_home);
         rv.setLayoutManager(new LinearLayoutManager(context));
         int type=1;

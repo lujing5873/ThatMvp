@@ -12,9 +12,6 @@ import pers.nchz.thatmvpdemo.home.views.IMainView;
 import pers.nchz.thatmvpdemo.home.views.IMessageView;
 
 public class MessageView extends ThatBaseView<MainPresenter> implements IMessageView {
-    public MessageView(Context context) {
-        super(context);
-    }
 
     @Override
     public void initView(Bundle savedInstanceState) {

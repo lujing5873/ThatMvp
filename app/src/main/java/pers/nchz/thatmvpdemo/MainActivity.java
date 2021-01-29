@@ -1,5 +1,6 @@
 package pers.nchz.thatmvpdemo;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import java.util.ServiceLoader;
@@ -30,5 +31,29 @@ public class MainActivity extends ThatBaseActivity {
         }
         savedInstanceState.putString("test","test");
         return super.onViewCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        System.out.println("onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        System.out.println("onPause");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        System.out.println("onDestroy");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        System.out.println("onStop");
     }
 }

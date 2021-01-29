@@ -41,7 +41,7 @@ public abstract class ThatBaseFragment<V extends ThatBaseView<P>,P extends ThatB
             }
             try {//分开写为了防止 fragment通过外部注入presenter或者view
                 if(view==null){
-                    view=getViewClass().getConstructor(Context.class,int.class).newInstance(mActivity,1);
+                    view=getViewClass().newInstance();
                 }
                 if(presenter==null){
                     presenter=getPresenterClass().newInstance();

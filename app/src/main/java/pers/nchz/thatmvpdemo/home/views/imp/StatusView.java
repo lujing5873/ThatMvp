@@ -12,9 +12,6 @@ import pers.nchz.thatmvpdemo.R;
 import pers.nchz.thatmvpdemo.home.views.IStatusView;
 
 public class StatusView extends ThatBaseView<ThatBasePresenter> implements IStatusView {
-    public StatusView(Context context) {
-        super(context);
-    }
 
     @Override
     public void initView(Bundle savedInstanceState) {

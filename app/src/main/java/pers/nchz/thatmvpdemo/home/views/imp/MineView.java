@@ -12,9 +12,6 @@ import pers.nchz.thatmvpdemo.home.views.IMainView;
 import pers.nchz.thatmvpdemo.home.views.IMineView;
 
 public class MineView extends ThatBaseView<MainPresenter> implements IMineView {
-    public MineView(Context context) {
-        super(context);
-    }
 
     @Override
     public void initView(Bundle savedInstanceState) {

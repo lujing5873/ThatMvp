@@ -20,18 +20,6 @@ import pers.nchz.thatmvpdemo.home.views.IHomeView;
 public class HomeViewVp extends ThatBaseView<MainPresenter> implements IHomeView {
     ViewPager2  vp;
 
-    public HomeViewVp(Context context, int type) {
-        super(context, type);
-    }
-
-    public HomeViewVp(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
-    public HomeViewVp(Context context) {
-        super(context);
-    }
-
     @Override
     public void initView(Bundle savedInstanceState) {
 //        presenter.getView(IHeadView.class).setTitle("robot | robot | robot");

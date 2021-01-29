@@ -30,7 +30,9 @@
             android:name="design_height_in_dp"
             android:value="667"/>
 
-        <activity android:name="pers.nchz.thatmvpdemo.MainActivity">
+        <activity android:name="pers.nchz.thatmvpdemo.MainActivity"
+            android:launchMode="singleTask"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -3,9 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent">
-    <pers.nchz.thatmvpdemo.home.views.imp.HomeHeadView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/content"
         android:layout_width="match_parent"

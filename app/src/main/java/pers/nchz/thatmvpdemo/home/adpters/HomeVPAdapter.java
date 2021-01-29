@@ -26,7 +26,7 @@ public class HomeVPAdapter extends RecyclerView.Adapter<HomeVPAdapter.ViewPagerV
     @NonNull
     @Override
     public ViewPagerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        HomeContentView homeContentView =new HomeContentView(parent.getContext(),1);
+        HomeContentView homeContentView =new HomeContentView();
         homeContentView.setPresenter(presenter);
         homeContentView.onCreate(LayoutInflater.from(parent.getContext()),parent,null);
         ViewPagerViewHolder viewPagerViewHolder=new ViewPagerViewHolder(homeContentView);

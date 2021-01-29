@@ -27,13 +27,9 @@ public class MainView extends ThatBaseView<MainPresenter> implements IMainView  
     private MineFrag mineFrag;
     private int lastFrag;
 
-    public MainView(Context context,int type) {
-        super(context,1);
-    }
-
     @Override
     public void initView(Bundle savedInstanceState) {
-        addSubView(new StatusView(context),savedInstanceState,0);
+        addSubView(new StatusView(),savedInstanceState,0);
         navigationView=getView(R.id.nav_main);
         navigationView.setItemIconTintList(null);//关闭着色
         //每次都会重建 所以选择别的实现方式

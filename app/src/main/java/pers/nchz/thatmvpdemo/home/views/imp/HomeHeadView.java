@@ -1,6 +1,7 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.View;
@@ -19,10 +20,6 @@ public class HomeHeadView extends ThatBaseView<ThatBasePresenter> implements IHe
 
     TextView tvTitle;
 
-    public HomeHeadView(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-    }
-
     @Override
     public void initView(Bundle savedInstanceState) {
         tvTitle=getView(R.id.tv_head);
@@ -34,13 +31,13 @@ public class HomeHeadView extends ThatBaseView<ThatBasePresenter> implements IHe
                 System.out.println("点击事件");
             }
         }, R.id.iv_scan);
-        tvTitle.setOnClickListener(new OnClickListener() {
+        tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("tvTitle");
             }
         });
-        getView(R.id.view_bg).setOnClickListener(new OnClickListener() {
+        getView(R.id.view_bg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("view_bg");

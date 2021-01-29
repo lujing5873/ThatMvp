@@ -40,7 +40,7 @@ public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatB
         //实例化view和presenter
         if(view==null||presenter==null){
             try {
-                view=getViewClass().getConstructor(Context.class,int.class).newInstance(this,1);
+                view=getViewClass().newInstance();
                 presenter=getPresenterClass().newInstance();
             } catch (Exception e) {
                 //出错加载错误页面
@@ -59,6 +59,7 @@ public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatB
         }
         setContentView(rootView);
         savedInstanceState=onViewCreate(savedInstanceState);
+
         if(view!=null){
             view.initView(savedInstanceState);
         }

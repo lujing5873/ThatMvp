@@ -21,7 +21,7 @@ import pers.nchz.thatmvp.presenter.ThatBasePresenter;
  *
  */
 
-public abstract class ThatBaseView <P extends ThatBasePresenter> extends ViewGroup implements IThatBaseView {
+public abstract class ThatBaseView <P extends ThatBasePresenter>  implements IThatBaseView {
 
 
     protected Context context;
@@ -32,34 +32,6 @@ public abstract class ThatBaseView <P extends ThatBasePresenter> extends ViewGro
     protected ViewGroup rootViewGroup;
     protected final SparseArray<View> mViews = new SparseArray<View>();
 
-    public ThatBaseView(Context context,int type){
-        super(context);
-    }
-    public ThatBaseView(Context context) {
-        this(context,null);
-    }
-
-    public ThatBaseView(Context context, @Nullable AttributeSet attrs) {
-        this(context,attrs,0);
-    }
-
-    public ThatBaseView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        this(context, attrs, defStyleAttr,0);
-    }
-
-    public ThatBaseView(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-        super(context, attrs, defStyleAttr, defStyleRes);
-//        if(baseActivity!=null){
-//            return;
-//        }
-        baseActivity= (ThatBaseActivity) context;
-        onCreate(LayoutInflater.from(context),null,null);
-        setPresenter(baseActivity.getPresenter());
-        presenter.addView(this.getInterface(),this);
-        initView(null);
-        this.context=context;
-        addView(rootView);
-    }
 
     @Override
     public void onCreate(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -148,17 +120,5 @@ public abstract class ThatBaseView <P extends ThatBasePresenter> extends ViewGro
         this.presenter= (P) presenter;
     }
 
-
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        rootView.measure(widthMeasureSpec,heightMeasureSpec);
-        setMeasuredDimension(rootView.getMeasuredWidth(),rootView.getMeasuredHeight());
-    }
-
-    @Override
-    protected void onLayout(boolean changed, int l, int t, int r, int b) {
-        rootView.layout(l, t, r, b);
-    }
 }
 

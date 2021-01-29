@@ -10,14 +10,6 @@ import pers.nchz.thatmvpdemo.home.presenters.MainPresenter;
 import pers.nchz.thatmvpdemo.home.views.IHomeView;
 
 public class HomeAppView extends ThatBaseView<MainPresenter> implements IHomeView {
-    public HomeAppView(Context context) {
-        super(context);
-    }
-
-    public HomeAppView(Context context, int type) {
-        super(context, type);
-    }
-
     @Override
     public void initView(Bundle savedInstanceState) {
 
