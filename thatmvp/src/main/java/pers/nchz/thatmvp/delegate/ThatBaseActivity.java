@@ -59,7 +59,6 @@ public abstract class ThatBaseActivity<V extends ThatBaseView<P>,P extends ThatB
         }
         setContentView(rootView);
         savedInstanceState=onViewCreate(savedInstanceState);
-
         if(view!=null){
             view.initView(savedInstanceState);
         }

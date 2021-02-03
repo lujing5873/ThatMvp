@@ -1,6 +1,7 @@
 package pers.nchz.thatmvpdemo.home.views.imp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 
 import androidx.annotation.Nullable;
+
+import com.nhcz500.base.activity.CapActivity;
 
 import pers.nchz.thatmvp.presenter.ThatBasePresenter;
 import pers.nchz.thatmvp.view.IThatBaseView;
@@ -28,19 +31,13 @@ public class HomeHeadView extends ThatBaseView<ThatBasePresenter> implements IHe
         setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("点击事件");
+                mActivity.startActivity(new Intent(mActivity, CapActivity.class));
             }
         }, R.id.iv_scan);
         tvTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 System.out.println("tvTitle");
-            }
-        });
-        getView(R.id.view_bg).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                System.out.println("view_bg");
             }
         });
     }
