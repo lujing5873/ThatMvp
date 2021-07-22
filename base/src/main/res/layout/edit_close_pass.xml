@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditText
+        android:id="@+id/edit"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="5dp"
+        android:layout_weight="1"
+        android:background="@color/transparent"
+        android:inputType="number"
+        android:minHeight="28.5dp"
+        android:textColor="@color/tv_fab"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/edit_clean"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:padding="5dp"
+        android:src="@mipmap/ic_pay_close"
+        android:visibility="gone" />
+
+
+    <ImageView
+        android:id="@+id/edit_show"
+        android:layout_width="30dp"
+        android:layout_height="28.5dp"
+        android:layout_gravity="center_vertical"
+        android:padding="5dp"
+        android:src="@mipmap/ic_password_show"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/edit_hint"
+        android:layout_width="30dp"
+        android:layout_height="28.5dp"
+        android:layout_gravity="center_vertical"
+        android:button="@color/transparent"
+        android:padding="5dp"
+        android:src="@mipmap/ic_password_hint"
+        android:visibility="gone" />
+</merge>

@@ -1,2 +1,2 @@
 include ':base'
-include ':app', ':thatmvp'
+include ':app', ':thatMvp'

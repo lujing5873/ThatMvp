@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.Nullable;
 
 import com.nhcz500.base.utils.DimenTransitionUtil;

@@ -3,5 +3,6 @@
     package="com.nhcz500.base">
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <application></application>
+    <application>
+    </application>
 </manifest>

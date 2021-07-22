@@ -1,14 +1,21 @@
-apply plugin: 'com.android.application'
+def extensions = rootProject.ext
+def plugins = extensions.plugins
+def androidConfigs = extensions.android
+def depends = extensions.dependencies
+def signing = extensions.secret.signingConfigs
+def app = extensions.modules.app
+
+apply plugin: plugins.application
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion androidConfigs.compileSdkVersion
+    buildToolsVersion androidConfigs.buildToolsVersion
     defaultConfig {
-        applicationId "pers.nchz.thatmvp"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        applicationId app.applicationId
+        minSdkVersion androidConfigs.minSdkVersion
+        targetSdkVersion androidConfigs.targetSdkVersion
+        versionCode app.versionCode
+        versionName app.versionName
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -18,10 +25,38 @@ android {
         }
 
     }
-    buildTypes {
+
+
+    signingConfigs {
+        debug {
+            storeFile file(signing.debugStoreFile)
+            storePassword signing.debugStorePassword
+            keyAlias signing.debugKeyAlias
+            keyPassword signing.debugKeyPassword
+        }
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file(signing.releaseStoreFile)
+            storePassword signing.releaseStorePassword
+            keyAlias signing.releaseKeyAlias
+            keyPassword signing.releaseKeyPassword
+        }
+    }
+
+    buildTypes {
+        debug {
+//            applicationIdSuffix ".debug"
+            minifyEnabled androidConfigs.debugMinifyEnabled
+            shrinkResources androidConfigs.debugShrinkResources
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+//            applicationIdSuffix ".release"
+            minifyEnabled androidConfigs.releaseMinifyEnabled
+            shrinkResources androidConfigs.releaseShrinkResources
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
 
@@ -33,29 +68,13 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation "androidx.viewpager2:viewpager2:1.0.0"
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
-    implementation 'com.github.tbruyelle:rxpermissions:0.12'
-    implementation 'com.jakewharton:butterknife:7.0.1'
-    implementation 'androidx.navigation:navigation-fragment:2.2.2'
-    implementation 'androidx.navigation:navigation-ui:2.2.2'
-    annotationProcessor 'com.jakewharton:butterknife:7.0.1'
-    implementation 'com.github.bumptech.glide:glide:4.5.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.5.0'
-    implementation 'me.jessyan:autosize:1.2.1'
-    implementation "androidx.fragment:fragment:1.2.5"
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
-    implementation "androidx.room:room-runtime:2.3.0-alpha04"
-    annotationProcessor "androidx.room:room-compiler:2.3.0-alpha04"
-    implementation "androidx.room:room-rxjava3:2.3.0-alpha04"
-    implementation 'com.github.lujing5873:FreeDialog:V1.0.0'
+    implementation depends.rxPermissions
+    implementation depends.autoSize
 
-    implementation "com.google.code.gson:gson:2.8.6"
+    implementation depends.roomRuntime
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    annotationProcessor depends.roomCompiler
 
-    implementation project(':thatmvp')
     implementation project(':base')
 }

@@ -1,16 +1,27 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    
+    apply from: 'configs.gradle'
+    ext.kotlin_version = "1.5.10"
     repositories {
+        mavenCentral()
+        // 阿里云云效仓库：https://maven.aliyun.com/mvn/guide
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+
         google()
-        jcenter()
+
+
+        // hms
+        maven { url 'http://developer.huawei.com/repo/'}
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven{ url 'https://maven.aliyun.com/repository/releases'}
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:4.2.2'
 
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
-
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,9 +29,17 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
+        // 阿里云云效仓库：https://maven.aliyun.com/mvn/guide
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+
         google()
-        jcenter()
+        //hms
+        maven {url 'http://developer.huawei.com/repo/'}
+        maven{ url 'https://maven.aliyun.com/repository/releases'}
         maven { url 'https://jitpack.io' }
+        maven { url 'http://4thline.org/m2' }
     }
 }
 

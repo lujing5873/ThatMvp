@@ -1,44 +1,89 @@
-plugins {
-    id 'com.android.library'
-}
+def extensions = rootProject.ext
+def plugins = extensions.plugins
+def androidConfigs = extensions.android
+def depends = extensions.dependencies
+def signing = extensions.secret.signingConfigs
+def app = extensions.modules.base
+apply plugin: plugins.library
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion androidConfigs.compileSdkVersion
+    buildToolsVersion androidConfigs.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion androidConfigs.minSdkVersion
+        targetSdkVersion androidConfigs.targetSdkVersion
+        versionCode app.versionCode
+        versionName app.versionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
-    buildTypes {
+
+
+    compileOptions {
+        sourceCompatibility androidConfigs.javaVersion
+        targetCompatibility androidConfigs.javaVersion
+    }
+
+
+
+    signingConfigs {
+        debug {
+            storeFile file(signing.debugStoreFile)
+            storePassword signing.debugStorePassword
+            keyAlias signing.debugKeyAlias
+            keyPassword signing.debugKeyPassword
+        }
         release {
-            minifyEnabled false
+            storeFile file(signing.releaseStoreFile)
+            storePassword signing.releaseStorePassword
+            keyAlias signing.releaseKeyAlias
+            keyPassword signing.releaseKeyPassword
+        }
+    }
+    buildTypes {
+        debug {
+
+            minifyEnabled androidConfigs.debugMinifyEnabled
+            shrinkResources androidConfigs.debugShrinkResources
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled androidConfigs.releaseMinifyEnabled
+            shrinkResources androidConfigs.releaseShrinkResources
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
         }
     }
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.2.0'
-    implementation "androidx.constraintlayout:constraintlayout:2.0.4"
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation('com.journeyapps:zxing-android-embedded:4.1.0') { transitive = false }//zxing第三方库
-    implementation 'com.google.zxing:core:3.3.0'
+    // compat androidX lib
+    api depends.appcompat
+    // ui lib
+    api depends.material
+    api depends.constraintLayout
+    api depends.swipereRefreshLayout
 
+    api depends.zxing
+    // glide
+    api depends.glide
+    annotationProcessor depends.glideCompiler
+
+    api depends.rxJava
+    api depends.rxAndroid
+    api depends.retrofit
+    api depends.retrofitGson
+    api depends.retrofitRxjava
+
+    //brva
+    api depends.brva
+    api depends.logging
+    api project(':thatMvp')
 
     // CameraX core library
     def camerax_version = '1.0.0-rc01'
