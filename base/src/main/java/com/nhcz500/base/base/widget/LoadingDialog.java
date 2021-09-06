@@ -17,6 +17,6 @@ public class LoadingDialog extends BaseDialog {
     protected void createView(Bundle savedInstanceState) {
         setElevation(3);
         setCancel(false);
-        progressBar=findViewById(R.id.loading_pro);
+        progressBar=getView(R.id.loading_pro);
     }
 }

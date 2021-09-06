@@ -83,6 +83,7 @@ dependencies {
     //brva
     api depends.brva
     api depends.logging
+    api depends.dialog
     api project(':thatMvp')
 
     // CameraX core library

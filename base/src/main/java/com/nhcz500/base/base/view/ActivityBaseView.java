@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.nhcz500.base.R;
+
 import pers.nchz.thatmvp.kotlin.presenter.KPresenter;
 
 public abstract class ActivityBaseView<P extends KPresenter>  extends BaseView<P> implements IAcBaseView {

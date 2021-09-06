@@ -3,6 +3,8 @@ package com.nhcz500.base.utils;
 import android.graphics.Rect;
 import android.view.View;
 
+import com.nhcz500.freedialog.FreeCusDialog;
+
 public class AndroidBug5497Workaround {
     // For more information, see https://issuetracker.google.com/issues/36911528
     // To use this class, simply invoke assistActivity() on an Activity that already has its content view set.

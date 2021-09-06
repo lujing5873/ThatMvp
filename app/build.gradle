@@ -6,7 +6,7 @@ def signing = extensions.secret.signingConfigs
 def app = extensions.modules.app
 
 apply plugin: plugins.application
-
+apply plugin: plugins.kotlin
 android {
     compileSdkVersion androidConfigs.compileSdkVersion
     buildToolsVersion androidConfigs.buildToolsVersion

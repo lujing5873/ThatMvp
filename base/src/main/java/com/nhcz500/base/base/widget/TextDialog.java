@@ -29,7 +29,7 @@ public class TextDialog  extends BaseDialog{
     @Override
     protected void createView(Bundle savedInstanceState) {
         text=getArguments().getString("title","");
-        title=findViewById(R.id.dialog_title);
+        title=getView(R.id.dialog_title);
         if(!TextUtils.isEmpty(text)){
             title.setText(text);
         }
