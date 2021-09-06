@@ -8,9 +8,9 @@ import com.nhcz500.base.base.widget.LoadingDialog;
 import com.nhcz500.base.network.cache.UserInfoCache;
 import com.nhcz500.base.network.throwable.HttpThrowable;
 
-import pers.nchz.thatmvp.java.delegate.ThatBaseActivity;
-import pers.nchz.thatmvp.java.view.IThatBaseView;
+import pers.nchz.thatmvp.kotlin.delegate.ThatActivity;
 import pers.nchz.thatmvp.kotlin.presenter.KPresenter;
+import pers.nchz.thatmvp.kotlin.view.IThatView;
 import pers.nchz.thatmvp.kotlin.view.ThatView;
 
 public abstract class BaseView<P extends KPresenter>
@@ -62,8 +62,8 @@ public abstract class BaseView<P extends KPresenter>
     }
 
 
-    protected <T extends IThatBaseView> T otherActivityView(Class<? extends ThatBaseActivity> activityClass, Class<T> viewClass) {
-        ThatBaseActivity activity= BaseApp.getApp().getActivity(activityClass);
+    protected <T extends IThatView> T otherActivityView(Class<? extends ThatActivity> activityClass, Class<T> viewClass) {
+        ThatActivity activity= BaseApp.getApp().getActivity(activityClass);
         if(activity==null){
             return null;
         }

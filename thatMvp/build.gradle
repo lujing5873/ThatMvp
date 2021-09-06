@@ -3,7 +3,6 @@ def extensions = rootProject.ext
 def plugins = extensions.plugins
 def androidConfigs = extensions.android
 def depends = extensions.dependencies
-def signing = extensions.secret.signingConfigs
 def app = extensions.modules.thatMvp
 apply plugin: plugins.library
 apply plugin: plugins.kotlin
@@ -25,39 +24,6 @@ android {
     compileOptions {
         sourceCompatibility androidConfigs.javaVersion
         targetCompatibility androidConfigs.javaVersion
-    }
-
-
-    signingConfigs {
-        debug {
-            storeFile file(signing.debugStoreFile)
-            storePassword signing.debugStorePassword
-            keyAlias signing.debugKeyAlias
-            keyPassword signing.debugKeyPassword
-        }
-        release {
-            storeFile file(signing.releaseStoreFile)
-            storePassword signing.releaseStorePassword
-            keyAlias signing.releaseKeyAlias
-            keyPassword signing.releaseKeyPassword
-        }
-    }
-
-    buildTypes {
-        debug {
-
-            minifyEnabled androidConfigs.debugMinifyEnabled
-            shrinkResources androidConfigs.debugShrinkResources
-            signingConfig signingConfigs.debug
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-        release {
-            minifyEnabled androidConfigs.releaseMinifyEnabled
-            shrinkResources androidConfigs.releaseShrinkResources
-            signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-
-        }
     }
 }
 

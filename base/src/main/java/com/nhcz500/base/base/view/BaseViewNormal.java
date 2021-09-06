@@ -13,8 +13,6 @@ import com.nhcz500.base.R;
 import com.nhcz500.base.base.widget.LoadingDialog;
 import com.nhcz500.base.network.throwable.HttpThrowable;
 
-import pers.nchz.thatmvp.java.presenter.ThatBasePresenter;
-import pers.nchz.thatmvp.java.view.ThatBaseView;
 import pers.nchz.thatmvp.kotlin.presenter.KPresenter;
 import pers.nchz.thatmvp.kotlin.view.ThatView;
 

@@ -2,7 +2,6 @@ package com.nhcz500.base.base.view;
 
 import com.nhcz500.base.network.throwable.HttpThrowable;
 
-import pers.nchz.thatmvp.java.view.IThatBaseView;
 import pers.nchz.thatmvp.kotlin.view.IThatView;
 
 

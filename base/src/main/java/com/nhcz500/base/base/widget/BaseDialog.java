@@ -1,9 +1,7 @@
 package com.nhcz500.base.base.widget;
 
-import com.nhcz500.base.weiget.FreeCusDialog;
-
-import pers.nchz.thatmvp.java.delegate.ThatBaseActivity;
-import pers.nchz.thatmvp.java.view.IThatBaseView;
+import pers.nchz.thatmvp.java.delegate.ThatActivity;
+import pers.nchz.thatmvp.java.view.IThatView;
 
 
 public abstract class BaseDialog extends FreeCusDialog {
@@ -13,7 +11,7 @@ public abstract class BaseDialog extends FreeCusDialog {
      * @param <T>
      * @return
      */
-    protected  <T extends IThatBaseView> T activityView(Class<T> viewClass) {
-        return getActivity()==null?null:(T) ((ThatBaseActivity)getActivity()).activityView(viewClass);
+    protected  <T extends IThatView> T activityView(Class<T> viewClass) {
+        return getActivity()==null?null:(T) ((ThatActivity)getActivity()).activityView(viewClass);
     }
 }

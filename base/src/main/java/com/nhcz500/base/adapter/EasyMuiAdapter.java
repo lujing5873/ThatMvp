@@ -13,8 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import pers.nchz.thatmvp.java.view.IRvBaseView;
 import pers.nchz.thatmvp.kotlin.view.IRvView;
+
 
 public abstract class EasyMuiAdapter<T extends BaseMultipleEntity> extends BaseQuickAdapter<T, BaseVH<IRvView>> {
     public EasyMuiAdapter() {
@@ -35,7 +35,8 @@ public abstract class EasyMuiAdapter<T extends BaseMultipleEntity> extends BaseQ
             }
         }
         view.onCreate(parent,realList,this);
-        BaseVH<IRvView> vh=new BaseVH<>(view);
+        BaseVH<IRvView> vh=new BaseVH<>(view.getRootView());
+        vh.setView(view);
         view.setParent(getRecyclerView());
         return vh;
     }

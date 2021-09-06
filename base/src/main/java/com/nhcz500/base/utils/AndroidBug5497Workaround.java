@@ -2,9 +2,6 @@ package com.nhcz500.base.utils;
 
 import android.graphics.Rect;
 import android.view.View;
-import android.view.ViewGroup;
-
-import com.nhcz500.base.weiget.FreeCusDialog;
 
 public class AndroidBug5497Workaround {
     // For more information, see https://issuetracker.google.com/issues/36911528

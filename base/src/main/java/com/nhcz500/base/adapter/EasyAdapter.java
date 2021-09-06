@@ -11,8 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import pers.nchz.thatmvp.java.view.IRvBaseView;
 import pers.nchz.thatmvp.kotlin.view.IRvView;
+
 
 public abstract class EasyAdapter<T> extends BaseQuickAdapter<T, BaseVH<IRvView>> {
 
@@ -32,7 +32,8 @@ public abstract class EasyAdapter<T> extends BaseQuickAdapter<T, BaseVH<IRvView>
     protected BaseVH<IRvView> onCreateDefViewHolder(@NotNull ViewGroup parent, int viewType) {
         IRvView view=createView(parent,viewType);
         view.onCreate(parent,getData(),this);
-        BaseVH<IRvView> vh=new BaseVH<>(view);
+        BaseVH<IRvView> vh=new BaseVH(view.getRootView());
+        vh.setView(view);
         view.setParent(getRecyclerView());
         return vh;
     }

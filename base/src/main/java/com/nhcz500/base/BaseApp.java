@@ -9,11 +9,11 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import pers.nchz.thatmvp.java.delegate.ThatBaseActivity;
+import pers.nchz.thatmvp.kotlin.delegate.ThatActivity;
 
 
 public class BaseApp extends Application {
-    public static LinkedHashMap<Class<? extends ThatBaseActivity>,ThatBaseActivity> activitys=new LinkedHashMap<>();
+    public static LinkedHashMap<Class<? extends ThatActivity>, ThatActivity> activitys=new LinkedHashMap<>();
 
     @Override
     public void onCreate() {
@@ -43,11 +43,11 @@ public class BaseApp extends Application {
     }
 
 
-    public ThatBaseActivity getActivity(Class<? extends ThatBaseActivity> classOf){
+    public ThatActivity getActivity(Class<? extends ThatActivity> classOf){
        return activitys.get(classOf);
     }
 
-    public ArrayList<ThatBaseActivity> getAllActivity(){
+    public ArrayList<ThatActivity> getAllActivity(){
         return new ArrayList<>(activitys.values());
     }
 
@@ -56,8 +56,8 @@ public class BaseApp extends Application {
 
         @Override
         public void onActivityCreated(Activity activity, Bundle bundle) {
-            if(activity instanceof ThatBaseActivity) {
-                activitys.put(((ThatBaseActivity)activity).getClass(), (ThatBaseActivity)activity);
+            if(activity instanceof ThatActivity) {
+                activitys.put(((ThatActivity)activity).getClass(), (ThatActivity)activity);
             }
         }
 
@@ -88,7 +88,7 @@ public class BaseApp extends Application {
 
         @Override
         public void onActivityDestroyed(Activity activity) {
-            if(activity instanceof ThatBaseActivity) {
+            if(activity instanceof ThatActivity) {
                 activitys.remove(activity.getClass());
             }
         }
