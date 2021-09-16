@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.nhcz500.base.R;
 
-import pers.nchz.thatmvp.kotlin.presenter.KPresenter;
+import pers.nchz.thatmvp.presenter.KPresenter;
 
 public abstract class ActivityBaseView<P extends KPresenter>  extends BaseView<P> implements IAcBaseView {
     private Fragment now;

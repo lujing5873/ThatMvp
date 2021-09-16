@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import pers.nchz.thatmvp.R
-import pers.nchz.thatmvp.kotlin.presenter.KPresenter
+import pers.nchz.thatmvp.presenter.KPresenter
 import pers.nchz.thatmvp.kotlin.view.IThatView
 
 abstract class ThatActivity: AppCompatActivity() {

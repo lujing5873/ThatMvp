@@ -1,11 +1,11 @@
-package pers.nchz.thatmvp.kotlin.presenter
+package pers.nchz.thatmvp.presenter
 
 import androidx.lifecycle.Lifecycle
 import pers.nchz.thatmvp.kotlin.view.IThatView
 import java.util.*
 
 open class KPresenter {
-    protected var mViews = LinkedHashMap<Class<out IThatView>, IThatView>()
+    private var mViews = LinkedHashMap<Class<out IThatView>, IThatView>()
     var lifecycle: Lifecycle? = null
 
     fun <T : IThatView> addView(view: T) {
@@ -19,7 +19,10 @@ open class KPresenter {
     }
 
     fun <T : IThatView> getView(viewClass: Class<T>): T? {
-        return mViews[viewClass]as T
+        mViews[viewClass]?.let {
+            return it as T
+        }
+        return null
     }
 
     fun cleanView() {

@@ -1,7 +1,7 @@
 package pers.nchz.thatmvpdemo.ui
 
 import pers.nchz.thatmvp.kotlin.delegate.ThatActivity
-import pers.nchz.thatmvp.kotlin.presenter.KPresenter
+import pers.nchz.thatmvp.presenter.KPresenter
 import pers.nchz.thatmvp.kotlin.view.IThatView
 import pers.nchz.thatmvpdemo.ui.presenter.MainPre
 import pers.nchz.thatmvpdemo.ui.view.MainAcView

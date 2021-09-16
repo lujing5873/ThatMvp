@@ -16,10 +16,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import pers.nchz.thatmvp.kotlin.delegate.ThatActivity
-import pers.nchz.thatmvp.kotlin.presenter.KPresenter
+import pers.nchz.thatmvp.presenter.KPresenter
 import java.lang.reflect.ParameterizedType
 
-abstract class ThatView<P :KPresenter> :IThatView,LifecycleObserver {
+abstract class ThatView<P : KPresenter> :IThatView,LifecycleObserver {
     protected var context: Context? = null
     protected var mActivity: AppCompatActivity?= null
     protected var baseActivity: ThatActivity?= null
