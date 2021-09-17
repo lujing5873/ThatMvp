@@ -10,7 +10,7 @@ Gradle:
 
 ```.gradle
 dependencies {
-     implementation 'com.github.lujing5873:ThatMvp:1.1.0'
+     implementation 'com.github.lujing5873:ThatMvp:1.3.0'
 }
 ```
 
