@@ -9,8 +9,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-import pers.nchz.thatmvp.kotlin.view.IRvView;
-import pers.nchz.thatmvp.kotlin.view.RvView;
+import pers.nchz.thatmvp.view.IRvView;
+import pers.nchz.thatmvp.view.RvView;
 
 
 public abstract class RvListView<T> extends RvView<List<T>> {

@@ -3,8 +3,9 @@ package com.nhcz500.base.base.widget;
 
 import com.nhcz500.freedialog.FreeCusDialog;
 
-import pers.nchz.thatmvp.kotlin.delegate.ThatActivity;
-import pers.nchz.thatmvp.kotlin.view.IThatView;
+import pers.nchz.thatmvp.delegate.ThatActivity;
+import pers.nchz.thatmvp.view.IThatView;
+
 
 public abstract class BaseDialog extends FreeCusDialog {
     /**

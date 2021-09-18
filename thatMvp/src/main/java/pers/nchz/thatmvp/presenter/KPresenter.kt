@@ -1,7 +1,7 @@
 package pers.nchz.thatmvp.presenter
 
 import androidx.lifecycle.Lifecycle
-import pers.nchz.thatmvp.kotlin.view.IThatView
+import pers.nchz.thatmvp.view.IThatView
 import java.util.*
 
 open class KPresenter {

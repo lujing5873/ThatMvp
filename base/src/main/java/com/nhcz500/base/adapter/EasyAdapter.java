@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-import pers.nchz.thatmvp.kotlin.view.IRvView;
+import pers.nchz.thatmvp.view.IRvView;
 
 
 public abstract class EasyAdapter<T> extends BaseQuickAdapter<T, BaseVH<IRvView>> {

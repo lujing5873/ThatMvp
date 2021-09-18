@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nhcz500.base.R;
 import com.nhcz500.base.utils.DimenTransitionUtil;
 import java.util.List;
-import pers.nchz.thatmvp.kotlin.view.IRvView;
-import pers.nchz.thatmvp.kotlin.view.RvView;
+
+import pers.nchz.thatmvp.view.IRvView;
+import pers.nchz.thatmvp.view.RvView;
 
 public abstract class VpRvListView<T> extends RvView<List<T>> {
     protected RecyclerView rv;

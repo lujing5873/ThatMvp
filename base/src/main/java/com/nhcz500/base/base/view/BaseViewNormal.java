@@ -14,7 +14,7 @@ import com.nhcz500.base.base.widget.LoadingDialog;
 import com.nhcz500.base.network.throwable.HttpThrowable;
 
 import pers.nchz.thatmvp.presenter.KPresenter;
-import pers.nchz.thatmvp.kotlin.view.ThatView;
+import pers.nchz.thatmvp.view.ThatView;
 
 public abstract class BaseViewNormal<P extends KPresenter>
         extends ThatView<P> implements IBaseView, View.OnClickListener{

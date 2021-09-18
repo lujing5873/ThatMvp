@@ -9,7 +9,7 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import pers.nchz.thatmvp.kotlin.delegate.ThatActivity;
+import pers.nchz.thatmvp.delegate.ThatActivity;
 
 
 public class BaseApp extends Application {

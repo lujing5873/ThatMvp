@@ -5,7 +5,8 @@ import android.view.View;
 import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
-import pers.nchz.thatmvp.kotlin.view.IRvView;
+
+import pers.nchz.thatmvp.view.IRvView;
 
 public class BaseVH<T extends IRvView> extends BaseViewHolder {
     public    T view;

@@ -8,10 +8,10 @@ import com.nhcz500.base.base.widget.LoadingDialog;
 import com.nhcz500.base.network.cache.UserInfoCache;
 import com.nhcz500.base.network.throwable.HttpThrowable;
 
-import pers.nchz.thatmvp.kotlin.delegate.ThatActivity;
+import pers.nchz.thatmvp.delegate.ThatActivity;
 import pers.nchz.thatmvp.presenter.KPresenter;
-import pers.nchz.thatmvp.kotlin.view.IThatView;
-import pers.nchz.thatmvp.kotlin.view.ThatView;
+import pers.nchz.thatmvp.view.IThatView;
+import pers.nchz.thatmvp.view.ThatView;
 
 public abstract class BaseView<P extends KPresenter>
         extends ThatView<P> implements IBaseView, View.OnClickListener{

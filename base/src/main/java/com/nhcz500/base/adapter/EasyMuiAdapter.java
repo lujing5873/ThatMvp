@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-import pers.nchz.thatmvp.kotlin.view.IRvView;
+import pers.nchz.thatmvp.view.IRvView;
 
 
 public abstract class EasyMuiAdapter<T extends BaseMultipleEntity> extends BaseQuickAdapter<T, BaseVH<IRvView>> {
