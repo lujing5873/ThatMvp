@@ -1,4 +1,4 @@
-package pers.nchz.thatmvp.kotlin.delegate
+package pers.nchz.thatmvp.delegate
 
 import android.content.Context
 import android.content.res.Configuration
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import pers.nchz.thatmvp.R
-import pers.nchz.thatmvp.kotlin.view.IThatView
+import pers.nchz.thatmvp.view.IThatView
 
 abstract class ThatFragment:Fragment() {
     protected var rootView: View? = null
@@ -18,7 +18,7 @@ abstract class ThatFragment:Fragment() {
     private val savedInstanceState: Bundle? = null
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        mActivity = context as ThatActivity
+        mActivity = context as? ThatActivity
     }
 
 
@@ -77,7 +77,7 @@ abstract class ThatFragment:Fragment() {
 
     override fun onResume() {
 
-        if(mActivity?.presenter?.getLastView()!==view){
+        if(mActivity?.presenter?.getLastView<IThatView>()!==view){
             view?.let {
                 mActivity?.addView(it)
             }
@@ -96,7 +96,7 @@ abstract class ThatFragment:Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        var parent=  rootView?.parent as ViewGroup
+        var parent=  rootView?.parent as? ViewGroup
         parent?.removeView(rootView)
     }
 

@@ -1,4 +1,4 @@
-package pers.nchz.thatmvp.kotlin.view
+package pers.nchz.thatmvp.view
 
 import android.content.Context
 import android.content.Intent
@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import pers.nchz.thatmvp.kotlin.delegate.ThatActivity
+import pers.nchz.thatmvp.delegate.ThatActivity
 import pers.nchz.thatmvp.presenter.KPresenter
 import java.lang.reflect.ParameterizedType
 
@@ -58,7 +58,7 @@ abstract class ThatView<P : KPresenter> :IThatView,LifecycleObserver {
                 interfaces = javaClass.superclass.interfaces
                 for (inter in interfaces) { //寻找父view的 接口
                     if (IThatView::class.java.isAssignableFrom(inter)) {
-                        classOfView = inter as Class<out IThatView?>
+                        classOfView = inter as? Class<out IThatView?>
                         break
                     }
                 }

@@ -20,7 +20,7 @@ open class KPresenter {
 
     fun <T : IThatView> getView(viewClass: Class<T>): T? {
         mViews[viewClass]?.let {
-            return it as T
+            return it as? T
         }
         return null
     }
@@ -31,11 +31,11 @@ open class KPresenter {
     }
 
 
-    fun getLastView(): IThatView? {
+    fun <T : IThatView> getLastView(): T? {
         val cache: Array<IThatView> = mViews.values.toTypedArray()
         return if (cache.isEmpty()) {
             null
-        } else cache[cache.size - 1]
+        } else cache[cache.size - 1] as? T
     }
 
     fun getViewSize(): Int {

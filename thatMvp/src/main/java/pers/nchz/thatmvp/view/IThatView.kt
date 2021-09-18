@@ -1,4 +1,4 @@
-package pers.nchz.thatmvp.kotlin.view
+package pers.nchz.thatmvp.view
 
 import android.content.Intent
 import android.content.res.Configuration

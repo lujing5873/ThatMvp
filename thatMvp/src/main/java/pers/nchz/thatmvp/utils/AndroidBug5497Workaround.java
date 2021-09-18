@@ -1,10 +1,11 @@
-package pers.nchz.thatmvp.kotlin.utils;
+package pers.nchz.thatmvp.utils;
 
 import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewGroup;
 
-import pers.nchz.thatmvp.kotlin.view.IThatView;
+import pers.nchz.thatmvp.view.IThatView;
+
 
 public class AndroidBug5497Workaround {
     // For more information, see https://issuetracker.google.com/issues/36911528

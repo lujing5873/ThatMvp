@@ -1,4 +1,4 @@
-package pers.nchz.thatmvp.kotlin.delegate
+package pers.nchz.thatmvp.delegate
 
 import android.content.Intent
 import android.content.res.Configuration
@@ -7,7 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import pers.nchz.thatmvp.R
 import pers.nchz.thatmvp.presenter.KPresenter
-import pers.nchz.thatmvp.kotlin.view.IThatView
+import pers.nchz.thatmvp.view.IThatView
 
 abstract class ThatActivity: AppCompatActivity() {
     /**
@@ -69,9 +69,8 @@ abstract class ThatActivity: AppCompatActivity() {
 
 
     override fun onDestroy() {
-        println("onDestroy activity")
         presenter?.cleanView()
-        presenter=null;
+        presenter=null
         view?.onDetach()
         super.onDestroy()
     }
