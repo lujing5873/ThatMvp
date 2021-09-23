@@ -235,6 +235,7 @@ abstract class ThatView<P : KPresenter> :IThatView,LifecycleObserver {
      * view销毁
      */
     override fun onDetach() {
+        lifecycle?.removeObserver(this)
         presenter?.cleanView()
         mViews.clear()
         fragment = null
@@ -243,7 +244,6 @@ abstract class ThatView<P : KPresenter> :IThatView,LifecycleObserver {
         baseActivity = null
         root = null
         rootViewGroup = null
-        lifecycle!!.removeObserver(this)
         lifecycle = null
     }
 

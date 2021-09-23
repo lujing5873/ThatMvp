@@ -16,7 +16,7 @@ Gradle:
 
 ```.gradle
 dependencies {
-     implementation 'com.github.lujing5873:ThatMvp:1.3.2'
+     implementation 'com.github.lujing5873:ThatMvp:1.3.3'
 }
 ```
 

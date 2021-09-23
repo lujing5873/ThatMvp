@@ -64,8 +64,10 @@ public abstract class HttpObserver<T> implements Observer<BaseModel<T>>, Lifecyc
     private void destroy(){
        if(disposable!=null){
            disposable.dispose();
-           lifecycle.removeObserver(this);
-           lifecycle=null;
+           if(lifecycle!=null){
+               lifecycle.removeObserver(this);
+               lifecycle=null;
+           }
        }
     }
 }
