@@ -235,6 +235,11 @@ abstract class ThatView<P : KPresenter> :IThatView,LifecycleObserver {
      * view销毁
      */
     override fun onDetach() {
+        presenter?.getViews()?.forEach {
+            if(it!==this){
+                it.onDetach()
+            }
+        }
         lifecycle?.removeObserver(this)
         presenter?.cleanView()
         mViews.clear()

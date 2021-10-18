@@ -11,7 +11,6 @@ import com.nhcz500.base.R;
 import pers.nchz.thatmvp.presenter.KPresenter;
 
 public abstract class ActivityBaseView<P extends KPresenter>  extends BaseView<P> implements IAcBaseView {
-    private Fragment now;
     @Override
     public int getRootLayoutId() {
         return R.layout.activity_base;
@@ -19,7 +18,7 @@ public abstract class ActivityBaseView<P extends KPresenter>  extends BaseView<P
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        now=nowFragment(savedInstanceState);
+        Fragment now=nowFragment(savedInstanceState);
         FragmentTransaction fragmentTransaction= getMActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fv_fragment,now,now.getTag());
         fragmentTransaction.commit();
@@ -28,9 +27,8 @@ public abstract class ActivityBaseView<P extends KPresenter>  extends BaseView<P
     protected abstract  Fragment nowFragment(Bundle savedInstanceState);
     @Override
     public void replaceFragment(Fragment newFrag) {
-        now=newFrag;
         FragmentTransaction fragmentTransaction= getMActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fv_fragment,now,now.getTag());
+        fragmentTransaction.replace(R.id.fv_fragment,newFrag,newFrag.getTag());
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
@@ -38,24 +36,16 @@ public abstract class ActivityBaseView<P extends KPresenter>  extends BaseView<P
 
     @Override
     public void popFragment(int index) {
-
         FragmentManager fragmentManager= getMActivity().getSupportFragmentManager();
         int id=fragmentManager.getBackStackEntryAt(index).getId();
         fragmentManager.popBackStack(id,FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        now=null;
     }
 
     @Override
     public void replaceFragmentNoBack(Fragment newFrag) {
-        now=newFrag;
         FragmentTransaction fragmentTransaction= getMActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fv_fragment,now,now.getTag());
+        fragmentTransaction.replace(R.id.fv_fragment,newFrag,newFrag.getTag());
         fragmentTransaction.commit();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        now=null;
-    }
 }
